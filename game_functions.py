@@ -1,0 +1,37 @@
+import sys                  #These are the modules
+import pygame            #that is needed for this particular code file to work
+
+def check_events(ship_1):
+    """A function that contains code that responds to key presses 
+    and mouse events"""
+    for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    #move the ship to the right
+                    ship_1.moving_right = True
+                elif event.key == pygame.K_LEFT:
+                    ship_1.moving_left = True
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    #Release the ship when either right or left keys
+                    #is released
+                    ship_1.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    ship_1.moving_left = False
+            
+                 
+                 
+
+def update_screen(screen,ship_1,screen_setting):
+    """A function that contains code that displays ship and 
+    shows the latest screen(frame) """
+     #Redraw the screen each pass through the loop with the 
+    # background colour appearing each time at the background
+    screen.fill(screen_setting.bg_colour)
+    #Display ship
+    ship_1.blit_me()
+    
+    #code that makes the most recently drawn screen (scene) visible
+    pygame.display.flip()
