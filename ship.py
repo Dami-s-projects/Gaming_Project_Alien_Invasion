@@ -25,6 +25,8 @@ class Ship():
         #Movement flag initialization
         self.moving_right = False
         self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
 
 
     def blit_me(self):
