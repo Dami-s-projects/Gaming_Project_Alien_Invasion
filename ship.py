@@ -14,12 +14,13 @@ class Ship():
         self.screen_rect=screen.get_rect()
 
         #Store a decimal value for the ship's center
-        self.center = float(self.rect.centerx)
+        
 
         #Start each new ship at the bottom center of the screen
         #By default the image stays at the top left of the screen
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
+        self.center = float(self.rect.centerx)
 
         #Movement flag initialization
         self.moving_right = False
