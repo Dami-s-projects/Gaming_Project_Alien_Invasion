@@ -20,6 +20,7 @@ class Ship():
         #By default the image stays at the top left of the screen
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
+        self.ship_yaxis= float(self.rect.centery)
         self.center = float(self.rect.centerx)
 
         #Movement flag initialization
@@ -40,5 +41,14 @@ class Ship():
             self.center= self.center + self.speed_setting.ship_speed_factor
         if self.moving_left and self.rect.left > 0:
             self.center= self.center - self.speed_setting.ship_speed_factor
+        if self.moving_up and self.rect.top > self.screen_rect.top:
+            self.ship_yaxis = (
+                self.ship_yaxis - self.speed_setting.ship_speed_factor
+                )
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.ship_yaxis =(
+                self.ship_yaxis + self.speed_setting.ship_speed_factor
+            )
         # Update rect object from self.center.
         self.rect.centerx = self.center
+        self.rect.centery =self.ship_yaxis

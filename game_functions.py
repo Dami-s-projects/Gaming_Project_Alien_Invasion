@@ -9,6 +9,10 @@ def check_keydown_events(event, ship_1):
         ship_1.moving_right = True
     elif event.key == pygame.K_LEFT:
         ship_1.moving_left = True
+    elif event.key == pygame.K_UP: #sets the moving up flag to true when 
+        ship_1.moving_up = True    #up key is pressed
+    elif event.key == pygame.K_DOWN:  #sets the moving down flag to true when
+        ship_1.moving_down = True      #down key is pressed
 
 def check_keyup_events(event, ship_1):
     """Respond when the key is released"""
@@ -18,6 +22,10 @@ def check_keyup_events(event, ship_1):
         ship_1.moving_right = False
     elif event.key == pygame.K_LEFT:
         ship_1.moving_left = False
+    elif event.key == pygame.K_UP:  #sets the moving up flag to False when 
+        ship_1.moving_up = False   #up key is released
+    elif event.key == pygame.K_DOWN:  #sets the moving down flag to False when 
+        ship_1.moving_down = False   #down key is released
 
 
 
