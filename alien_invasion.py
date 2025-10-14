@@ -15,6 +15,7 @@ def run_game():
     pygame.init()
     screen_setting=Settings()
     speed_setting=Settings()
+    bullet_setting=Settings() #instance of setting for bullet
     screen=pygame.display.set_mode(
         (screen_setting.screen_width,screen_setting.screen_height))
     pygame.display.set_caption("Alien Invasion")
