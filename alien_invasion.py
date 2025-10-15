@@ -1,4 +1,5 @@
 import pygame
+from pygame.sprite import Group
 from settings import Settings
 from ship import Ship
 import game_functions as game_fns
@@ -22,19 +23,22 @@ def run_game():
 
     #Make a ship
     ship_1=Ship(speed_setting,screen)
+
+    #Make a group to store bullet in.
+    bullets = Group()
     
 
     #Start the main while loop of the game
     while True:
 
         ###code that watches for Keyboard and mouse events
-        game_fns.check_events(ship_1)  #changes the attribute of 
+        game_fns.check_events(ship_1,bullet_setting,screen,bullets)  #changes the attribute of 
         #moving right to true
         ship_1.update()   #calls the update method of ship, which ends up
         #moving the ship to the right by 1 px if right key was pressed
 
         #displays and update screen each iteration
-        game_fns.update_screen(screen,ship_1,screen_setting)
+        game_fns.update_screen(screen,ship_1,screen_setting,bullets)
 
 
 run_game()
