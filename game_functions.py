@@ -51,12 +51,17 @@ def check_events(ship_1,bullet_setting,screen,bullets):
                  
                  
 
-def update_screen(screen,ship_1,screen_setting):
+def update_screen(screen,ship_1,screen_setting,bullets):
     """A function that contains code that displays ship and 
     shows the latest screen(frame) """
      #Redraw the screen each pass through the loop with the 
     # background colour appearing each time at the background
     screen.fill(screen_setting.bg_colour)
+
+    #Redraws the bullet above the background colour and behind the ship 
+    # and alien
+    for bullet in bullets.sprites():
+        bullet.draw_bullet()
     #Display ship
     ship_1.blit_me()
     
