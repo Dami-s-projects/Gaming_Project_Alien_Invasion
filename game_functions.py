@@ -1,8 +1,8 @@
 import sys                  #These are the modules
 import pygame            #that is needed for this particular code file to work
+from bullet import Bullet #import bullet class needed for creating a bullet
 
-
-def check_keydown_events(event, ship_1):
+def check_keydown_events(event, ship_1,bullet_setting,bullet,screen):
     """Respond when the key is pressed down"""
     if event.key == pygame.K_RIGHT:
         #move the ship to the right
@@ -13,6 +13,10 @@ def check_keydown_events(event, ship_1):
         ship_1.moving_up = True    #up key is pressed
     elif event.key == pygame.K_DOWN:  #sets the moving down flag to true when
         ship_1.moving_down = True      #down key is pressed
+    elif event.key == pygame.K_SPACE: #when user presses space bar
+        new_bullet = Bullet(bullet_setting,screen,ship_1)
+        bullet.add(new_bullet) #add the new bullet to the group
+
 
 def check_keyup_events(event, ship_1):
     """Respond when the key is released"""
@@ -29,7 +33,7 @@ def check_keyup_events(event, ship_1):
 
 
 
-def check_events(ship_1):
+def check_events(ship_1,bullet_setting,screen,bullets):
     """A function that contains code that responds to key presses 
     and mouse events"""
     for event in pygame.event.get():
@@ -37,7 +41,9 @@ def check_events(ship_1):
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 #call keydown function for button pressed down
-                check_keydown_events(event,ship_1)
+                check_keydown_events(
+                    event,ship_1,bullet_setting,bullets,screen
+                    )
             elif event.type == pygame.KEYUP:
                 #call keyup function for button released
                 check_keyup_events(event, ship_1)
