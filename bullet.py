@@ -20,3 +20,17 @@ class Bullet(Sprite):
         self.colour = bullet_setting.bullet_colour
         self.bullet_speed_factor = bullet_setting.bullet_speed_factor
 
+    def update(self):
+        """A method that causes the bullet move upward by a cetain unit once
+        on each call"""
+        #move the bullet y coordinate upwards using the value in the 
+        #bullet_speed_factor attribute
+        self.y = self.y - self.bullet_speed_factor
+        #update the coordinate to the new coordinate
+        self.rect.y = self.y
+    
+    def draw_bullet(self):
+        """A method that draws the bullet to the screen using the new 
+        coordinates"""
+        pygame.draw.rect(self.screen,self.colour,self.rect)
+
