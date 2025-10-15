@@ -14,8 +14,9 @@ def check_keydown_events(event, ship_1,bullet_setting,bullet,screen):
     elif event.key == pygame.K_DOWN:  #sets the moving down flag to true when
         ship_1.moving_down = True      #down key is pressed
     elif event.key == pygame.K_SPACE: #when user presses space bar
-        new_bullet = Bullet(bullet_setting,screen,ship_1)
-        bullet.add(new_bullet) #add the new bullet to the group
+        if len(bullet) < bullet_setting.bullets_allowed:
+            new_bullet = Bullet(bullet_setting,screen,ship_1)
+            bullet.add(new_bullet) #add the new bullet to the group
 
 
 def check_keyup_events(event, ship_1):
