@@ -25,7 +25,7 @@ def run_game():
     ship_1=Ship(speed_setting,screen)
 
     #Make a group to store bullet in.
-    bullets = Group()
+    bullets = Group() #but this group is really like an instance of Bullet() 
     
 
     #Start the main while loop of the game
@@ -36,6 +36,9 @@ def run_game():
         #moving right to true
         ship_1.update()   #calls the update method of ship, which ends up
         #moving the ship to the right by 1 px if right key was pressed
+
+        bullets.update() #calls the update method of the Bullet class not the
+        #one for ship class
 
         #displays and update screen each iteration
         game_fns.update_screen(screen,ship_1,screen_setting,bullets)
