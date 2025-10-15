@@ -37,15 +37,7 @@ def run_game():
         ship_1.update()   #calls the update method of ship, which ends up
         #moving the ship to the right by 1 px if right key was pressed
 
-        bullets.update() #calls the update method of the Bullet class not the
-        #one for ship class
-
-        #Get rid of bullets that have reached the top of the screen, instead
-        #of making it continuously going up while it becomes invisibe in our
-        #  sight
-        for bullet in bullets.copy():
-            if bullet.rect.bottom < 0:
-                bullets.remove(bullet)
+        game_fns.update_bullets(bullets)
 
         #displays and update screen each iteration
         game_fns.update_screen(screen,ship_1,screen_setting,bullets)

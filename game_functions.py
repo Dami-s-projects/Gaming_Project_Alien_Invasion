@@ -68,3 +68,16 @@ def update_screen(screen,ship_1,screen_setting,bullets):
     
     #code that makes the most recently drawn screen (scene) visible
     pygame.display.flip()
+
+def update_bullets(bullets):
+    """Move the bullets and get rid of the one that have left screen"""
+    bullets.update() #calls the update method of the Bullet class not the
+    #one for ship class
+
+    #Get rid of bullets that have reached the top of the screen, instead
+    #of making it continuously going up while it becomes invisibe in our
+    #  sight
+    for bullet in bullets.copy():
+        if bullet.rect.bottom < 0:
+            bullets.remove(bullet)
+    
