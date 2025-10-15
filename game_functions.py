@@ -2,6 +2,14 @@ import sys                  #These are the modules
 import pygame            #that is needed for this particular code file to work
 from bullet import Bullet #import bullet class needed for creating a bullet
 
+
+def fire_bullets(bullet,bullet_setting,screen,ship_1):
+    """Fire a bullet if limit is not reached (limit of 3 here)"""
+    if len(bullet) < bullet_setting.bullets_allowed:
+        # Create a new bullet and add it to the bullets group
+        new_bullet = Bullet(bullet_setting,screen,ship_1)
+        bullet.add(new_bullet) #add the new bullet to the group
+
 def check_keydown_events(event, ship_1,bullet_setting,bullet,screen):
     """Respond when the key is pressed down"""
     if event.key == pygame.K_RIGHT:
@@ -14,9 +22,7 @@ def check_keydown_events(event, ship_1,bullet_setting,bullet,screen):
     elif event.key == pygame.K_DOWN:  #sets the moving down flag to true when
         ship_1.moving_down = True      #down key is pressed
     elif event.key == pygame.K_SPACE: #when user presses space bar
-        if len(bullet) < bullet_setting.bullets_allowed:
-            new_bullet = Bullet(bullet_setting,screen,ship_1)
-            bullet.add(new_bullet) #add the new bullet to the group
+        fire_bullets(bullet,bullet_setting,screen,ship_1)
 
 
 def check_keyup_events(event, ship_1):
