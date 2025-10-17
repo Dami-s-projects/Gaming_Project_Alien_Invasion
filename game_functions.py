@@ -23,7 +23,8 @@ def check_keydown_events(event, ship_1,bullet_setting,bullet,screen):
         ship_1.moving_down = True      #down key is pressed
     elif event.key == pygame.K_SPACE: #when user presses space bar
         fire_bullets(bullet,bullet_setting,screen,ship_1)
-
+    elif event.key == pygame.K_q:
+        sys.exit()
 
 def check_keyup_events(event, ship_1):
     """Respond when the key is released"""
