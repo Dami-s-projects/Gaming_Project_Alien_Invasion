@@ -89,22 +89,8 @@ def update_bullets(bullets):
         if bullet.rect.bottom < 0:
             bullets.remove(bullet)
 
-def create_fleet(screen_setting,screen,aliens):
-    """A function that creates creates a group of aliens
-    and adds them to the screen"""
-
-    #Please note that i use screen_setting when instantiating the alien
-    #It can be confusing, as it should take in speed_setting. But both
-    #can do the job as both are instances of settings so they all have 
-    #all the attributes in the Settings class. So it is best to
-    #think of screen_setting as speed_setting of the alien. The other
-    #codes are clear
-
-
-    #Create an alien and find the number of aliens in a row
-    #the space between each alien is equal to one alien width
-    alien = Alien(screen_setting,screen)
-    alien_width = alien.rect.width
+def get_number_aliens_x(screen_setting,alien_width):
+    """Function that determines the number of aliens that fit in a row"""
     #we only want to use the middle space of screen, with two margins
     #at both end. The margin should have a pixel width equivalent
     #to  the width of an alien
@@ -114,13 +100,37 @@ def create_fleet(screen_setting,screen,aliens):
     #The math takes into account that there is an alien width pixel kind
     #of space at both sides of the alien
     number_aliens_x = int((available_space_x)/(2*alien_width))
+    return number_aliens_x
+
+def create_alien(screen_setting, screen, aliens, alien_number):
+    """Create an alien and place it in a row"""
+
+    #Please note that i use screen_setting when instantiating the alien
+    #It can be confusing, as it should take in speed_setting. But both
+    #can do the job as both are instances of settings so they all have 
+    #all the attributes in the Settings class. So it is best to
+    #think of screen_setting as speed_setting of the alien. The other
+    #codes are clear
+
+    alien = Alien(screen_setting,screen)
+    alien_width = alien.rect.width
+    #Set the alien horizontal position
+    alien_x = alien_width + (2 * alien_width *alien_number)
+    alien.rect.x=alien_x
+    aliens.add(alien)
+
+def create_fleet(screen_setting,screen,aliens):
+    """A function that creates creates a group of aliens
+    and adds them to the screen"""
+
+    #Create an alien and find the number of aliens in a row.
+    #The space between each alien is equal to one alien width
+    alien = Alien(screen_setting,screen)
+    number_aliens_x =get_number_aliens_x(screen_setting,alien.rect.width)
 
     #Create the first row of alien
     for alien_number in range(number_aliens_x):#remember range(6): iterates 5x
         #Create an alien and place it in the row
-        alien = Alien(screen_setting,screen)
+        create_alien(screen_setting,screen,aliens,alien_number)
 
-        #Set the alien horizontal position
-        alien_x = alien_width + (2 * alien_width *alien_number)
-        alien.rect.x=alien_x
-        aliens.add(alien)
+       
