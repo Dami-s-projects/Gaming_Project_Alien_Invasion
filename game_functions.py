@@ -59,7 +59,7 @@ def check_events(ship_1,bullet_setting,screen,bullets):
                  
                  
 
-def update_screen(screen,ship_1,screen_setting,bullets):
+def update_screen(screen,ship_1,screen_setting,bullets,alien):
     """A function that contains code that displays ship and 
     shows the latest screen(frame) """
      #Redraw the screen each pass through the loop with the 
@@ -72,6 +72,7 @@ def update_screen(screen,ship_1,screen_setting,bullets):
         bullet.draw_bullet()
     #Display ship
     ship_1.blit_me()
+    alien.blit_me()
     
     #code that makes the most recently drawn screen (scene) visible
     pygame.display.flip()
