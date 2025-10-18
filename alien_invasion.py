@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import Group
 from settings import Settings
 from ship import Ship
+from alien import Alien
 import game_functions as game_fns
 
 ####Dami just remember that settings.py is the module name and the second
@@ -27,6 +28,8 @@ def run_game():
     #Make a group to store bullet in.
     bullets = Group() #but this group is really like an instance of Bullet() 
     
+    #Make an Alien
+    alien = Alien(speed_setting,screen)
 
     #Start the main while loop of the game
     while True:
@@ -40,7 +43,7 @@ def run_game():
         game_fns.update_bullets(bullets)
 
         #displays and update screen each iteration
-        game_fns.update_screen(screen,ship_1,screen_setting,bullets)
+        game_fns.update_screen(screen,ship_1,screen_setting,bullets,alien)
 
 
 run_game()
