@@ -102,7 +102,19 @@ def get_number_aliens_x(screen_setting,alien_width):
     number_aliens_x = int((available_space_x)/(2*alien_width))
     return number_aliens_x
 
-def create_alien(screen_setting, screen, aliens, alien_number):
+def get_number_rows(alien_height,ship_height,screen_setting):
+    """Function determines the number of rows of aliens that fit on 
+    the screen"""
+    available_height_y = (
+        screen_setting.screen_height -( 3 *alien_height) - ship_height
+    )
+    partial_space =float(0.5 * alien_height)
+    number_rows = int(
+        (available_height_y/ (alien_height+partial_space))
+        )
+    return number_rows
+
+def create_alien(screen_setting, screen, aliens, alien_number, row_number):
     """Create an alien and place it in a row"""
 
     #Please note that i use screen_setting when instantiating the alien
@@ -114,12 +126,29 @@ def create_alien(screen_setting, screen, aliens, alien_number):
 
     alien = Alien(screen_setting,screen)
     alien_width = alien.rect.width
+    alien_height = alien.rect.height
     #Set the alien horizontal position
+    partial_space =float(0.5 * alien_height) #set vertical distance between
+                        #each alien to be half of alien height
     alien_x = alien_width + (2 * alien_width *alien_number)
+    alien_y = alien_height + (        #Initialize alien new vertical position
+        alien_height * row_number +   #to be below the top by the value of
+        (row_number *partial_space) ) #alien_height and ensure that there
+                                    #is a partial space between alien on
+                                    #the first row,second row, and subsequent
+                                    # rows.  The row_number determines what
+                                    #row the alien is presently duplicated to
+                                    #and the for loop will give the row_number
+                                    #a value
+                            
     alien.rect.x=alien_x
+    alien.rect.y = alien_y    #Update the alien position to the initialized
+                                #position. Then the next line adds the
+                                #alien at this position to the group of aliens
+
     aliens.add(alien)
 
-def create_fleet(screen_setting,screen,aliens):
+def create_fleet(screen_setting,screen,aliens,ship_1):
     """A function that creates creates a group of aliens
     and adds them to the screen"""
 
@@ -127,10 +156,15 @@ def create_fleet(screen_setting,screen,aliens):
     #The space between each alien is equal to one alien width
     alien = Alien(screen_setting,screen)
     number_aliens_x =get_number_aliens_x(screen_setting,alien.rect.width)
-
-    #Create the first row of alien
-    for alien_number in range(number_aliens_x):#remember range(6): iterates 5x
-        #Create an alien and place it in the row
-        create_alien(screen_setting,screen,aliens,alien_number)
+    number_rows = get_number_rows(
+        alien.rect.height,ship_1.rect.height,screen_setting
+        )
+    
+    for row_number in range(number_rows): #ensures rows cre created 
+        #multiple times
+        #Create the first row of alien 
+        for alien_number in range(number_aliens_x):#remember range(6): iterates 5x
+            #Create an alien and place it in the row
+            create_alien(screen_setting,screen,aliens,alien_number,row_number)
 
        
