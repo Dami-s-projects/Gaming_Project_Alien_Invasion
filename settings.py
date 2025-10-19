@@ -9,7 +9,7 @@ class Settings():
 
         #Screen settings
         self.screen_width= 1200
-        self.screen_height= 800
+        self.screen_height= 960
         self.bg_colour= (230,230,230)
 
         #Bullet settings
