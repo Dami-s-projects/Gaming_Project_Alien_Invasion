@@ -9,7 +9,7 @@ class Ship():
         self.speed_setting = speed_setting
 
         #load the ship image and get its rect
-        self.image = pygame.image.load("alien_invasion\images\ship.png").convert_alpha()
+        self.image = pygame.image.load("alien_invasion\images\ship5.png").convert_alpha()
         self.rect = self.image.get_rect()
         self.screen_rect=screen.get_rect()
 
