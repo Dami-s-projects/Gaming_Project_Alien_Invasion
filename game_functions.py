@@ -167,4 +167,7 @@ def create_fleet(screen_setting,screen,aliens,ship_1):
             #Create an alien and place it in the row
             create_alien(screen_setting,screen,aliens,alien_number,row_number)
 
+def update_aliens(aliens):
+    """Update position of alien fleet"""
+    aliens.update()
        
