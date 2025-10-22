@@ -30,3 +30,9 @@ class Alien(Sprite): #class inherits form Sprite class
     def blit_me(self):
         """A method that draws the alien at its exact location"""
         self.screen.blit(self.image, self.rect)
+
+    def update(self):
+        """Function moves Alien fleet to the right"""
+        self.x = self.x +self.speed_setting.alien_speed_factor
+        #use the updated coordinate
+        self.rect.x = self.x
