@@ -43,7 +43,7 @@ def run_game():
         #moving the ship to the right by 1 px if right key was pressed
 
         game_fns.update_bullets(bullets)
-        game_fns.update_aliens(aliens)
+        game_fns.update_aliens(aliens,screen_setting)
 
         #displays and update screen each iteration
         game_fns.update_screen(screen,ship_1,screen_setting,bullets,aliens)

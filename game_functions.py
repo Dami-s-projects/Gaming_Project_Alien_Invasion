@@ -168,7 +168,28 @@ def create_fleet(screen_setting,screen,aliens,ship_1):
             #Create an alien and place it in the row
             create_alien(screen_setting,screen,aliens,alien_number,row_number)
 
-def update_aliens(aliens):
-    """Update position of alien fleet"""
+def check_fleet_edges(screen_setting,aliens):
+    """Function calls change_fleet
+     direction if alien hits the edge"""
+    for alien in aliens.sprites():
+        if alien.check_edges():
+            #calls the check_edges method of the 
+            change_fleet_direction(screen_setting,aliens)#alien class
+            break
+
+def change_fleet_direction(screen_setting,aliens):
+    "Function drops alien down and changes fleet direction"
+
+    #Drops alien
+    for alien in aliens.sprites():
+        alien.rect.y = alien.rect.y + screen_setting.fleet_drop_speed
+        #Changes direction
+    screen_setting.fleet_direction = screen_setting.fleet_direction  * -1
+
+
+def update_aliens(aliens,screen_setting):
+    """Check if alien is at the edge before
+    Updating position of alien fleet"""
+    check_fleet_edges(screen_setting,aliens)
     aliens.update()
        
