@@ -145,6 +145,7 @@ def create_alien(screen_setting, screen, aliens, alien_number, row_number):
     alien.rect.y = alien_y    #Update the alien position to the initialized
                                 #position. Then the next line adds the
                                 #alien at this position to the group of aliens
+    alien.x =float(alien.rect.x)
 
     aliens.add(alien)
 
