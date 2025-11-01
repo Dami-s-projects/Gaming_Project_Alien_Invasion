@@ -77,10 +77,14 @@ def update_screen(screen,ship_1,screen_setting,bullets,aliens):
     #code that makes the most recently drawn screen (scene) visible
     pygame.display.flip()
 
-def update_bullets(bullets):
+def update_bullets(bullets,aliens):
     """Move the bullets and get rid of the one that have left screen"""
     bullets.update() #calls the update method of the Bullet class not the
     #one for ship class
+
+    #Check collision. Check for any bullet that have hit alien,
+    #if so, delete the bullet and the alien.
+    collisions = pygame.sprite.groupcollide(bullets,aliens,True,True)
 
     #Get rid of bullets that have reached the top of the screen, instead
     #of making it continuously going up while it becomes invisibe in our
