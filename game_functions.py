@@ -82,21 +82,31 @@ def update_bullets(bullets,aliens,screen_setting,screen,ship_1):
     bullets.update() #calls the update method of the Bullet class not the
     #one for ship class
 
-    #Check collision. Check for any bullet that have hit alien,
-    #if so, delete the bullet and the alien.
-    collisions = pygame.sprite.groupcollide(bullets,aliens,True,True)
+    #Call function that checks collision
+    check_bullet_and_alien_collision(
+        bullets,aliens,screen_setting,screen,ship_1
+        )
 
-    if len(aliens) == 0:
-        #Destroy existing bullets and create a new fleet
-        #when the previous fleet was shot down
-        bullets.empty()
-        create_fleet(screen_setting,screen,aliens,ship_1)
     #Get rid of bullets that have reached the top of the screen, instead
     #of making it continuously going up while it becomes invisibe in our
     #  sight
     for bullet in bullets.copy():
         if bullet.rect.bottom < 0:
             bullets.remove(bullet)
+
+def check_bullet_and_alien_collision(
+        bullets,aliens,screen_setting,screen,ship_1
+        ):
+     #Check collision. Check for any bullet that have hit alien,
+    #if so, delete the bullet and the alien.
+    collisions = pygame.sprite.groupcollide(bullets,aliens,True,True)
+
+    if len(aliens) == 0:
+    #Destroy existing bullets and create a new fleet
+    #when the previous fleet was shot down
+        bullets.empty()
+        create_fleet(screen_setting,screen,aliens,ship_1)
+
 
 def get_number_aliens_x(screen_setting,alien_width):
     """Function that determines the number of aliens that fit in a row"""
