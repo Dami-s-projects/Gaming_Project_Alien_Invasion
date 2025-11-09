@@ -43,14 +43,15 @@ def run_game():
 
         ###code that watches for Keyboard and mouse events
         game_fns.check_events(ship_1,bullet_setting,screen,bullets)  #changes the attribute of 
-        #moving right to true
-        ship_1.update()   #calls the update method of ship, which ends up
-        #moving the ship to the right by 1 px if right key was pressed
+        if statistics.game_active:
+            #moving right to true
+            ship_1.update()   #calls the update method of ship, which ends up
+            #moving the ship to the right by 1 px if right key was pressed
 
-        game_fns.update_bullets(bullets,aliens,screen_setting,screen,ship_1)
-        game_fns.update_aliens(
-            aliens,screen_setting,ship_1,statistics,screen,bullets
-            )
+            game_fns.update_bullets(bullets,aliens,screen_setting,screen,ship_1)
+            game_fns.update_aliens(
+                aliens,screen_setting,ship_1,statistics,screen,bullets
+                )
 
         #displays and update screen each iteration
         game_fns.update_screen(screen,ship_1,screen_setting,bullets,aliens)

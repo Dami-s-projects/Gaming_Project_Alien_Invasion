@@ -225,24 +225,28 @@ def update_aliens(aliens,screen_setting,ship_1,statistics,screen,bullets):
 def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets):
     """Performs operations when ship hits alien"""
 
-    #Firstly, decrement the number of ships left
-    statistics.ships_left = statistics.ships_left -1
+    if statistics.ships_left > 0:
+        #Firstly, decrement the number of ships left
+        statistics.ships_left = statistics.ships_left -1
 
-    #Secondly, Empty the number of aliens and bullets on screen
-    aliens.empty()
-    bullets.empty()
+        #Secondly, Empty the number of aliens and bullets on screen
+        aliens.empty()
+        bullets.empty()
 
-    #Thirdly, Create a new alien fleet and position the ship at the center
-    create_fleet(screen_setting,screen,aliens,ship_1)
-    ship_1.center_ship()
+        #Thirdly, Create a new alien fleet and position the ship at the center
+        create_fleet(screen_setting,screen,aliens,ship_1)
+        ship_1.center_ship()
 
-    #Fourthly, pause the game for 0.5 second
-    sleep(0.5)
+        #Fourthly, pause the game for 0.5 second
+        sleep(0.5)
 
-    ##Please Note that these code above will only ensure the game pauses, it
-    #does the other operations but the next codes in the game main loop
-    #will draw the changes to the screen. Game main
-    # loop -(alien_invasion.py)
+        ##Please Note that these code above will only ensure the game pauses, it
+        #does the other operations but the next codes in the game main loop
+        #will draw the changes to the screen. Game main
+        # loop -(alien_invasion.py)
+
+    else:
+        statistics.game_active = False
 
 def check_aliens_bottom(
         screen_setting, statistics, screen, ship_1, aliens,bullets,

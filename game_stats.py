@@ -6,6 +6,9 @@ class GameStats():
         self.screen_setting = screen_setting
         self.reset_stats()
 
+        #Initialize the game active flag
+        self.game_active = True
+
     def reset_stats(self):
         """Initialize the game statistics that will br changing during 
         the game"""
