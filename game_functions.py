@@ -206,9 +206,13 @@ def change_fleet_direction(screen_setting,aliens):
     screen_setting.fleet_direction = screen_setting.fleet_direction  * -1
 
 
-def update_aliens(aliens,screen_setting):
+def update_aliens(aliens,screen_setting,ship_1):
     """Check if alien is at the edge before
     Updating position of alien fleet"""
     check_fleet_edges(screen_setting,aliens)
     aliens.update()
+    #look for alien-ship collisions.
+    if pygame.sprite.spritecollideany(ship_1,aliens):
+        print("Ship hit!!!")
+
        
