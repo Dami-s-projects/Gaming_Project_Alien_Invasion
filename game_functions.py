@@ -216,6 +216,10 @@ def update_aliens(aliens,screen_setting,ship_1,statistics,screen,bullets):
     if pygame.sprite.spritecollideany(ship_1,aliens):
         #Call ship_hit function when ship collides with aliens
         ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets)
+    #Check to see if any alien has reached the bottom of the screen
+    check_aliens_bottom(
+        screen_setting,statistics,screen,ship_1,aliens,bullets
+        )
 
 
 def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets):
@@ -239,3 +243,15 @@ def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets):
     #does the other operations but the next codes in the game main loop
     #will draw the changes to the screen. Game main
     # loop -(alien_invasion.py)
+
+def check_aliens_bottom(
+        screen_setting, statistics, screen, ship_1, aliens,bullets,
+        ):
+    """Check to see if any alien has reached screen bottom"""
+    screen_rect = screen.get_rect()
+    for alien in aliens.sprites():
+        if alien.rect.bottom >= screen_rect.bottom:
+            #When any alien reaches bottom restart the game (game over)
+            #Treat it the same way we treat alien to ship collision.
+            ship_hit(screen_setting,statistics,screen,ship_1,aliens,bullets)
+            break
