@@ -72,9 +72,9 @@ This project is a work in progress. I'm actively learning and improving it as I 
 ✅ Bullet firing with limit system  
 ✅ Alien fleet generation  
 ✅ Aliens moving and changing direction at edges  
+✅Collision detection between bullets and aliens
 
 ### Planned Improvements
-- Add collision detection between bullets and aliens
 - Implement scoring system
 - Add game over and restart functionality
 - Create start menu
