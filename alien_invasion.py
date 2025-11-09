@@ -3,6 +3,7 @@ from pygame.sprite import Group
 from settings import Settings
 from ship import Ship
 import game_functions as game_fns
+from game_stats import GameStats
 
 ####Dami just remember that settings.py is the module name and the second
 #is the class name, it is simply #from module_name import Class_name
@@ -20,6 +21,10 @@ def run_game():
     screen=pygame.display.set_mode(
         (screen_setting.screen_width,screen_setting.screen_height))
     pygame.display.set_caption("Alien Invasion")
+
+    #Create an instance to store game statistics.
+    statistics = GameStats(screen_setting)
+
 
     #Make a ship
     ship_1=Ship(speed_setting,screen)
