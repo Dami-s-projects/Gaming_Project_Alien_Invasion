@@ -2,6 +2,7 @@ import sys                  #These are the modules
 import pygame            #that is needed for this particular code file to work
 from bullet import Bullet #import bullet class needed for creating a bullet
 from alien import Alien
+from time import sleep
 
 def fire_bullets(bullet,bullet_setting,screen,ship_1):
     """Fire a bullet if limit is not reached (limit of 3 here)"""
@@ -206,13 +207,35 @@ def change_fleet_direction(screen_setting,aliens):
     screen_setting.fleet_direction = screen_setting.fleet_direction  * -1
 
 
-def update_aliens(aliens,screen_setting,ship_1):
+def update_aliens(aliens,screen_setting,ship_1,statistics,screen,bullets):
     """Check if alien is at the edge before
     Updating position of alien fleet"""
     check_fleet_edges(screen_setting,aliens)
     aliens.update()
     #look for alien-ship collisions.
     if pygame.sprite.spritecollideany(ship_1,aliens):
-        print("Ship hit!!!")
+        #Call ship_hit function when ship collides with aliens
+        ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets)
 
-       
+
+def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets):
+    """Performs operations when ship hits alien"""
+
+    #Firstly, decrement the number of ships left
+    statistics.ships_left = statistics.ships_left -1
+
+    #Secondly, Empty the number of aliens and bullets on screen
+    aliens.empty()
+    bullets.empty()
+
+    #Thirdly, Create a new alien fleet and position the ship at the center
+    create_fleet(screen_setting,screen,aliens,ship_1)
+    ship_1.center_ship()
+
+    #Fourthly, pause the game for 0.5 second
+    sleep(0.5)
+
+    ##Please Note that these code above will only ensure the game pauses, it
+    #does the other operations but the next codes in the game main loop
+    #will draw the changes to the screen. Game main
+    # loop -(alien_invasion.py)

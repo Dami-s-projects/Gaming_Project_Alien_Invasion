@@ -52,3 +52,11 @@ class Ship():
         # Update rect object from self.center.
         self.rect.centerx = self.center
         self.rect.centery =self.ship_yaxis
+
+    def center_ship(self):
+        """Position the ship to the center when called"""
+        self.center = self.screen_rect.centerx
+        self.ship_yaxis = self.screen_rect.bottom -(
+            self.rect.height/2
+            )
+        
