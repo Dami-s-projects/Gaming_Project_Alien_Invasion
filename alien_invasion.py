@@ -4,6 +4,7 @@ from settings import Settings
 from ship import Ship
 import game_functions as game_fns
 from game_stats import GameStats
+from button import Button
 
 ####Dami just remember that settings.py is the module name and the second
 #is the class name, it is simply #from module_name import Class_name
@@ -21,6 +22,9 @@ def run_game():
     screen=pygame.display.set_mode(
         (screen_setting.screen_width,screen_setting.screen_height))
     pygame.display.set_caption("Alien Invasion")
+
+    #Make the play button (i.e. make an innstance of button class)
+    play_button = Button(screen_setting,screen,"Play")
 
     #Create an instance to store game statistics.
     statistics = GameStats(screen_setting)
@@ -54,7 +58,9 @@ def run_game():
                 )
 
         #displays and update screen each iteration
-        game_fns.update_screen(screen,ship_1,screen_setting,bullets,aliens)
+        game_fns.update_screen(
+            screen,ship_1,screen_setting,bullets,aliens,statistics,play_button
+            )
 
 
 run_game()
