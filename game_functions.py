@@ -42,7 +42,10 @@ def check_keyup_events(event, ship_1):
 
 
 
-def check_events(ship_1,bullet_setting,screen,bullets,statistics,play_button):
+def check_events(
+        ship_1,bullet_setting,screen,bullets,statistics,play_button
+        ,aliens,screen_setting
+        ):
     """A function that contains code that responds to key presses 
     and mouse events"""
     for event in pygame.event.get():
@@ -61,10 +64,16 @@ def check_events(ship_1,bullet_setting,screen,bullets,statistics,play_button):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x,mouse_y = pygame.mouse.get_pos()
                 #Check to see whether button was tapped
-                check_play_button(statistics,play_button,mouse_x,mouse_y)
+                check_play_button(statistics,play_button,mouse_x,mouse_y
+                                  ,ship_1,aliens,bullets,screen_setting,screen
+                                  
+                                  )
             
 
-def check_play_button(statistics,play_button,mouse_x,mouse_y):
+def check_play_button(
+        statistics,play_button,mouse_x,mouse_y,ship_1,aliens,bullets
+        ,screen_setting,screen
+        ):
     """Starts a new game when the player clicks 'Play'. """
     
     #In reality, this code will check whether the tapped region
@@ -72,6 +81,17 @@ def check_play_button(statistics,play_button,mouse_x,mouse_y):
     if play_button.rect.collidepoint(mouse_x,mouse_y):
         #If button was tapped, set game_active to True i.e. Game Starts!!!
         statistics.game_active = True
+
+        #Then reset the game statistics
+        statistics.reset_stats()
+
+        #Then Empty the list of aliens and bullets
+        aliens.empty()
+        bullets.empty()
+
+        #Then create a new fleet and center the ship
+        create_fleet(screen_setting,screen,aliens,ship_1)
+        ship_1.center_ship()
 
             
                  
