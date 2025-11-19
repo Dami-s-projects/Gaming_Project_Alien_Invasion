@@ -46,7 +46,9 @@ def run_game():
     while True:
 
         ###code that watches for Keyboard and mouse events
-        game_fns.check_events(ship_1,bullet_setting,screen,bullets)  #changes the attribute of 
+        game_fns.check_events(
+            ship_1,bullet_setting,screen,bullets,statistics,play_button
+            )  #changes the attribute of 
         if statistics.game_active:
             #moving right to true
             ship_1.update()   #calls the update method of ship, which ends up

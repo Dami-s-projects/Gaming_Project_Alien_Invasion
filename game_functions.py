@@ -42,7 +42,7 @@ def check_keyup_events(event, ship_1):
 
 
 
-def check_events(ship_1,bullet_setting,screen,bullets):
+def check_events(ship_1,bullet_setting,screen,bullets,statistics,play_button):
     """A function that contains code that responds to key presses 
     and mouse events"""
     for event in pygame.event.get():
@@ -56,6 +56,23 @@ def check_events(ship_1,bullet_setting,screen,bullets):
             elif event.type == pygame.KEYUP:
                 #call keyup function for button released
                 check_keyup_events(event, ship_1)
+
+            #Check if the mouse button was tapped or double-tapped
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x,mouse_y = pygame.mouse.get_pos()
+                #Check to see whether button was tapped
+                check_play_button(statistics,play_button,mouse_x,mouse_y)
+            
+
+def check_play_button(statistics,play_button,mouse_x,mouse_y):
+    """Starts a new game when the player clicks 'Play'. """
+    
+    #In reality, this code will check whether the tapped region
+    #collides with the the space occupied by the play button.
+    if play_button.rect.collidepoint(mouse_x,mouse_y):
+        #If button was tapped, set game_active to True i.e. Game Starts!!!
+        statistics.game_active = True
+
             
                  
                  
