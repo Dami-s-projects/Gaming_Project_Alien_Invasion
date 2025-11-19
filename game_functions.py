@@ -227,7 +227,8 @@ def create_fleet(screen_setting,screen,aliens,ship_1):
     for row_number in range(number_rows): #ensures rows cre created 
         #multiple times
         #Create the first row of alien 
-        for alien_number in range(number_aliens_x):#remember range(6): iterates 5x
+        for alien_number in range(number_aliens_x): 
+            #remember range(6):iterates 5x
             #Create an alien and place it in the row
             create_alien(screen_setting,screen,aliens,alien_number,row_number)
 
@@ -283,9 +284,9 @@ def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets):
         #Fourthly, pause the game for 0.5 second
         sleep(0.5)
 
-        ##Please Note that these code above will only ensure the game pauses, it
-        #does the other operations but the next codes in the game main loop
-        #will draw the changes to the screen. Game main
+        ##Please Note that these code above will only ensure the game pauses,
+        # it does the other operations but the next codes in the game main 
+        # loop will draw the changes to the screen. Game main
         # loop -(alien_invasion.py)
 
     else:
