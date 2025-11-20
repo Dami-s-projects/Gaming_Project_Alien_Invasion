@@ -29,7 +29,7 @@ def check_keydown_events(
         fire_bullets(bullet,bullet_setting,screen,ship_1)
     elif event.key == pygame.K_q:
         sys.exit()
-    elif event.key == pygame.K_p:
+    elif event.key == pygame.K_p and not statistics.game_active:
         start_game(
             statistics,aliens,bullets,screen_setting,screen,ship_1
             )
