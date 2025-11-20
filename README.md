@@ -13,6 +13,7 @@ This is a learning project I built to develop my Python programming skills and u
 - **Alien Fleet**: Dynamically generated rows of aliens that move across and down the screen
 - **Edge Detection**: Aliens change direction and drop down when reaching screen edges
 - **Collision System**: Bullet management with automatic cleanup when bullets leave the screen
+- **Start Button**: Launch the game using either the Play button or the P key for quick access
 
 ## Tech Stack
 
@@ -28,6 +29,7 @@ This is a learning project I built to develop my Python programming skills and u
 | ← | Move ship left |
 | → | Move ship right |
 | SPACE | Fire bullet |
+| P | Start game |
 | Q | Quit game |
 
 ## Project Structure
