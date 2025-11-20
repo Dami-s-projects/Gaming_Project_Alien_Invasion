@@ -270,7 +270,7 @@ def update_aliens(aliens,screen_setting,ship_1,statistics,screen,bullets):
 def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets):
     """Performs operations when ship hits alien"""
 
-    if statistics.ships_left > 0:
+    if statistics.ships_left > 1:
         #Firstly, decrement the number of ships left
         statistics.ships_left = statistics.ships_left -1
 
