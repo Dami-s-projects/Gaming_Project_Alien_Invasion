@@ -78,7 +78,8 @@ def check_play_button(
     
     #In reality, this code will check whether the tapped region
     #collides with the the space occupied by the play button.
-    if play_button.rect.collidepoint(mouse_x,mouse_y):
+    button_clicked =play_button.rect.collidepoint(mouse_x,mouse_y)
+    if button_clicked and not statistics.game_active:
         #If button was tapped, set game_active to True i.e. Game Starts!!!
         statistics.game_active = True
 
