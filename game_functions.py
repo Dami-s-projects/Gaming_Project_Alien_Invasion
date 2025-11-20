@@ -80,6 +80,9 @@ def check_play_button(
     #collides with the the space occupied by the play button.
     button_clicked =play_button.rect.collidepoint(mouse_x,mouse_y)
     if button_clicked and not statistics.game_active:
+
+        #Hide Mouse cursor when game is active
+        pygame.mouse.set_visible(False)
         #If button was tapped, set game_active to True i.e. Game Starts!!!
         statistics.game_active = True
 
@@ -292,6 +295,7 @@ def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets):
 
     else:
         statistics.game_active = False
+        pygame.mouse.set_visible(True)
 
 def check_aliens_bottom(
         screen_setting, statistics, screen, ship_1, aliens,bullets,
