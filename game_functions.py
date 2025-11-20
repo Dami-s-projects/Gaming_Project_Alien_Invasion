@@ -80,26 +80,32 @@ def check_play_button(
     #collides with the the space occupied by the play button.
     button_clicked =play_button.rect.collidepoint(mouse_x,mouse_y)
     if button_clicked and not statistics.game_active:
+        start_game(
+        statistics,aliens,bullets,screen_setting,screen,ship_1
+        )
 
-        #Hide Mouse cursor when game is active
-        pygame.mouse.set_visible(False)
-        #If button was tapped, set game_active to True i.e. Game Starts!!!
-        statistics.game_active = True
-
-        #Then reset the game statistics
-        statistics.reset_stats()
-
-        #Then Empty the list of aliens and bullets
-        aliens.empty()
-        bullets.empty()
-
-        #Then create a new fleet and center the ship
-        create_fleet(screen_setting,screen,aliens,ship_1)
-        ship_1.center_ship()
+        
 
             
-                 
-                 
+def start_game(
+        statistics,aliens,bullets,screen_setting,screen,ship_1
+        ):
+    """Function starts game and reset settings"""               
+    #Hide Mouse cursor when game is active
+    pygame.mouse.set_visible(False)
+    #If button was tapped, set game_active to True i.e. Game Starts!!!
+    statistics.game_active = True
+
+    #Then reset the game statistics
+    statistics.reset_stats()
+
+    #Then Empty the list of aliens and bullets
+    aliens.empty()
+    bullets.empty()
+
+    #Then create a new fleet and center the ship
+    create_fleet(screen_setting,screen,aliens,ship_1)
+    ship_1.center_ship()     
 
 def update_screen(
         screen,ship_1,screen_setting,bullets,aliens,statistics,play_button
