@@ -11,7 +11,10 @@ def fire_bullets(bullet,bullet_setting,screen,ship_1):
         new_bullet = Bullet(bullet_setting,screen,ship_1)
         bullet.add(new_bullet) #add the new bullet to the group
 
-def check_keydown_events(event, ship_1,bullet_setting,bullet,screen):
+def check_keydown_events(
+        event, ship_1,bullet_setting,bullet,screen,
+        statistics,aliens,bullets,screen_setting
+        ):
     """Respond when the key is pressed down"""
     if event.key == pygame.K_RIGHT:
         #move the ship to the right
@@ -26,6 +29,10 @@ def check_keydown_events(event, ship_1,bullet_setting,bullet,screen):
         fire_bullets(bullet,bullet_setting,screen,ship_1)
     elif event.key == pygame.K_q:
         sys.exit()
+    elif event.key == pygame.K_p:
+        start_game(
+            statistics,aliens,bullets,screen_setting,screen,ship_1
+            )
 
 def check_keyup_events(event, ship_1):
     """Respond when the key is released"""
@@ -54,7 +61,8 @@ def check_events(
             elif event.type == pygame.KEYDOWN:
                 #call keydown function for button pressed down
                 check_keydown_events(
-                    event,ship_1,bullet_setting,bullets,screen
+                    event,ship_1,bullet_setting,bullets,screen,
+                    statistics,aliens,bullets,screen_setting
                     )
             elif event.type == pygame.KEYUP:
                 #call keyup function for button released
