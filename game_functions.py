@@ -107,6 +107,9 @@ def start_game(
     #Then reset the game statistics
     statistics.reset_stats()
 
+    #Then reset dynamic settings (level settings)
+    screen_setting.initialize_dynamic_settings()
+
     #Then Empty the list of aliens and bullets
     aliens.empty()
     bullets.empty()
