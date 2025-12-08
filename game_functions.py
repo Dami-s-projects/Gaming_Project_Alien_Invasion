@@ -167,6 +167,7 @@ def check_bullet_and_alien_collision(
     #Destroy existing bullets and create a new fleet
     #when the previous fleet was shot down
         bullets.empty()
+        screen_setting.increase_speed()
         create_fleet(screen_setting,screen,aliens,ship_1)
 
 
