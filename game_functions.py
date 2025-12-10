@@ -120,6 +120,7 @@ def start_game(
 
 def update_screen(
         screen,ship_1,screen_setting,bullets,aliens,statistics,play_button
+        ,score_details
         ):
     """A function that contains code that displays ship and 
     shows the latest screen(frame) """
@@ -135,6 +136,9 @@ def update_screen(
     ship_1.blit_me()
     aliens.draw(screen)
 
+    #Show the score information
+    score_details.show_score()
+    
     #Draw the button if the game is inactive
     if not statistics.game_active:
         play_button.draw_button()
