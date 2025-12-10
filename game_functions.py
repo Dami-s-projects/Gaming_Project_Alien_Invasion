@@ -174,8 +174,10 @@ def check_bullet_and_alien_collision(
 
     if collisions: #checks whether the variable is not none #checks 
                         #to see if collisions exist
-        statistics.score =statistics.score+screen_setting.alien_points
-        score_details.prepare_score()
+        for aliens in collisions.values():
+            statistics.score =(statistics.score+(screen_setting.alien_points
+             *len(aliens)))
+            score_details.prepare_score()
 
     if len(aliens) == 0:
     #Destroy existing bullets and create a new fleet
