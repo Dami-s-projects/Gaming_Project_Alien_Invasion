@@ -32,6 +32,9 @@ class Settings():
         """Initialize settings that change throughout the game"""
         self.ship_speed_factor = 0.5
         self.alien_speed_factor = 0.2
+        #Score
+        self.alien_points = 50
+        #Bullet speed 
         self.bullet_speed_factor = 1
         #fleet direction of 1 represents right, -1 represents left
         self.fleet_direction = 1
