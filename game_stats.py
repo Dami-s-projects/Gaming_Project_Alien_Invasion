@@ -15,3 +15,5 @@ class GameStats():
         """Initialize the game statistics that will br changing during 
         the game"""
         self.ships_left = self.screen_setting.ship_limit
+        #Initialize variable for tracking scroe #It Resets when game restarts
+        self.score = 0
