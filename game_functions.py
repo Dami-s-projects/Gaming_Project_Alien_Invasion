@@ -138,7 +138,7 @@ def update_screen(
 
     #Show the score information
     score_details.show_score()
-    
+
     #Draw the button if the game is inactive
     if not statistics.game_active:
         play_button.draw_button()
@@ -146,14 +146,15 @@ def update_screen(
     #code that makes the most recently drawn screen (scene) visible
     pygame.display.flip()
 
-def update_bullets(bullets,aliens,screen_setting,screen,ship_1):
+def update_bullets(bullets,aliens,screen_setting,screen,ship_1
+    ,statistics,score_details):
     """Move the bullets and get rid of the one that have left screen"""
     bullets.update() #calls the update method of the Bullet class not the
     #one for ship class
 
     #Call function that checks collision
     check_bullet_and_alien_collision(
-        bullets,aliens,screen_setting,screen,ship_1
+        bullets,aliens,screen_setting,screen,ship_1,statistics,score_details
         )
 
     #Get rid of bullets that have reached the top of the screen, instead
@@ -165,10 +166,16 @@ def update_bullets(bullets,aliens,screen_setting,screen,ship_1):
 
 def check_bullet_and_alien_collision(
         bullets,aliens,screen_setting,screen,ship_1
+        ,statistics,score_details
         ):
      #Check collision. Check for any bullet that have hit alien,
     #if so, delete the bullet and the alien.
     collisions = pygame.sprite.groupcollide(bullets,aliens,True,True)
+
+    if collisions: #checks whether the variable is not none #checks 
+                        #to see if collisions exist
+        statistics.score =statistics.score+screen_setting.alien_points
+        score_details.prepare_score()
 
     if len(aliens) == 0:
     #Destroy existing bullets and create a new fleet
