@@ -23,7 +23,8 @@ class Scoreboard():
 
     def prepare_score(self):
         """Method turns the score into a rendered image"""
-        score_string = str(self.statistics.score)
+        rounded_score = round(self.statistics.score,-1)
+        score_string = "{:,}".format(rounded_score)
         self.score_image = self.font.render(score_string,True,
                     self.text_colour,self.screen_setting.bg_colour
         )
