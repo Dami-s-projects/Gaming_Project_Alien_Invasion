@@ -7,7 +7,7 @@ class GameStats():
 
         #Initialized high score attribute, High score should never be reset
         self.high_score =  0
-        
+
         self.reset_stats()
 
         #Initialize the game active flag
@@ -21,3 +21,4 @@ class GameStats():
         self.ships_left = self.screen_setting.ship_limit
         #Initialize variable for tracking scroe #It Resets when game restarts
         self.score = 0
+        self.level = 1
