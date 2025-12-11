@@ -20,6 +20,7 @@ class Scoreboard():
 
         #Now prepare the score image to be displayed
         self.prepare_score()
+        self.prepare_high_score()
 
     def prepare_score(self):
         """Method turns the score into a rendered image"""
@@ -37,7 +38,23 @@ class Scoreboard():
     def show_score(self):
         """Displays rendered score text on screen"""
         self.screen.blit(self.score_image,self.score_rect)
+        self.screen.blit(self.high_score_image,self.high_score_rect)
 
+    def prepare_high_score(self):
+        """Convert the integer High score to image"""
+
+        #Firstly round it up
+        high_score = round(self.statistics.high_score,-1)
+        #Secondly, separate it by commas and make it a string
+        high_score_str = "{:,}".format(high_score)
+        #Thirdly convert the string to image
+        self.high_score_image = self.font.render(high_score_str
+        ,True,self.text_colour,self.screen_setting.bg_colour)
+
+        #Finally, place the high score at the top center of the screen
+        self.high_score_rect = self.high_score_image.get_rect()
+        self.high_score_rect.centerx = self.screen_rect.centerx
+        self.high_score_rect.top = 20
 
 
         

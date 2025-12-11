@@ -4,6 +4,10 @@ class GameStats():
     def __init__(self,screen_setting):
         """Initializations of statistics"""
         self.screen_setting = screen_setting
+
+        #Initialized high score attribute, High score should never be reset
+        self.high_score =  0
+        
         self.reset_stats()
 
         #Initialize the game active flag
