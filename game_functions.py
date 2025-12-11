@@ -58,7 +58,7 @@ def check_keyup_events(event, ship_1):
 
 def check_events(
         ship_1,bullet_setting,screen,bullets,statistics,play_button
-        ,aliens,screen_setting
+        ,aliens,screen_setting,score_details
         ):
     """A function that contains code that responds to key presses 
     and mouse events"""
@@ -81,13 +81,14 @@ def check_events(
                 #Check to see whether button was tapped
                 check_play_button(statistics,play_button,mouse_x,mouse_y
                                   ,ship_1,aliens,bullets,screen_setting,screen
+                                  ,score_details
                                   
                                   )
             
 
 def check_play_button(
         statistics,play_button,mouse_x,mouse_y,ship_1,aliens,bullets
-        ,screen_setting,screen
+        ,screen_setting,screen,score_details
         ):
     """Starts a new game when the player clicks 'Play'. """
     
@@ -96,14 +97,14 @@ def check_play_button(
     button_clicked =play_button.rect.collidepoint(mouse_x,mouse_y)
     if button_clicked and not statistics.game_active:
         start_game(
-        statistics,aliens,bullets,screen_setting,screen,ship_1
+        statistics,aliens,bullets,screen_setting,screen,ship_1,score_details
         )
 
         
 
             
 def start_game(
-        statistics,aliens,bullets,screen_setting,screen,ship_1
+        statistics,aliens,bullets,screen_setting,screen,ship_1,score_details
         ):
     """Function starts game and reset settings"""               
     #Hide Mouse cursor when game is active
@@ -113,6 +114,11 @@ def start_game(
 
     #Then reset the game statistics
     statistics.reset_stats()
+
+    #Then reset the tracking variables for score
+    score_details.prepare_score()
+    score_details.prepare_high_score()
+    score_details.prepare_level()
 
     #Then reset dynamic settings (level settings)
     screen_setting.initialize_dynamic_settings()
