@@ -26,7 +26,7 @@ class Scoreboard():
     def prepare_score(self):
         """Method turns the score into a rendered image"""
         rounded_score = round(self.statistics.score,-1)
-        score_string = "{:,}".format(rounded_score)
+        score_string = str("Score: ")+"{:,}".format(rounded_score)
         self.score_image = self.font.render(score_string,True,
                     self.text_colour,self.screen_setting.bg_colour
         )
@@ -49,7 +49,7 @@ class Scoreboard():
         #Firstly round it up
         high_score = round(self.statistics.high_score,-1)
         #Secondly, separate it by commas and make it a string
-        high_score_str = "{:,}".format(high_score)
+        high_score_str = str("High Score: ")+"{:,}".format(high_score)
         #Thirdly convert the string to image
         self.high_score_image = self.font.render(high_score_str
         ,True,self.text_colour,self.screen_setting.bg_colour)
@@ -61,7 +61,7 @@ class Scoreboard():
 
     def prepare_level(self):
         """Turns the level into a rendered image"""
-        level_number = str(self.statistics.level)
+        level_number = str("Level: ") + str(self.statistics.level)
         self.level_image = self.font.render(
             level_number,True,self.text_colour,self.screen_setting.bg_colour)
         
