@@ -188,11 +188,18 @@ def check_bullet_and_alien_collision(
         check_high_score(statistics,score_details)
 
     if len(aliens) == 0:
+    #If entire fleet is destroyed, start a new level
+
     #Destroy existing bullets and create a new fleet
     #when the previous fleet was shot down
         bullets.empty()
         screen_setting.increase_speed()
         create_fleet(screen_setting,screen,aliens,ship_1)
+
+        #Increase level by 1
+        statistics.level = statistics.level + 1
+        #Now pass it to the prepare function, so display can happen
+        score_details.prepare_level()
 
 
 def get_number_aliens_x(screen_setting,alien_width):
