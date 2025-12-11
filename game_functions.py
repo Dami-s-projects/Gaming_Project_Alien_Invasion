@@ -4,6 +4,13 @@ from bullet import Bullet #import bullet class needed for creating a bullet
 from alien import Alien
 from time import sleep
 
+def check_high_score(statistics,score_details):
+    """Function checks to see if current high score is outdated"""
+    if statistics.score > statistics.high_score:
+        statistics.high_score = statistics.score
+        score_details.prepare_high_score()
+        
+
 def fire_bullets(bullet,bullet_setting,screen,ship_1):
     """Fire a bullet if limit is not reached (limit of 3 here)"""
     if len(bullet) < bullet_setting.bullets_allowed:
@@ -178,6 +185,7 @@ def check_bullet_and_alien_collision(
             statistics.score =(statistics.score+(screen_setting.alien_points
              *len(aliens)))
             score_details.prepare_score()
+        check_high_score(statistics,score_details)
 
     if len(aliens) == 0:
     #Destroy existing bullets and create a new fleet
