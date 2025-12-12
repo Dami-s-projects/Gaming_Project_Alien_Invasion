@@ -80,7 +80,7 @@ class Scoreboard():
         """function shows number of ships left as images"""
         self.ships = Group()
         #make the ship images number the same as the number on ship left
-        for ship_number_count in range(self.screen_setting.ship_limit):
+        for ship_number_count in range(self.statistics.ships_left):
             #create a ship image and add to group
             ship = Ship(self.speed_setting,self.screen)
             #Position each ship at the right next to each other.
