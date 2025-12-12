@@ -20,7 +20,7 @@ def fire_bullets(bullet,bullet_setting,screen,ship_1):
 
 def check_keydown_events(
         event, ship_1,bullet_setting,bullet,screen,
-        statistics,aliens,bullets,screen_setting
+        statistics,aliens,bullets,screen_setting,score_details
         ):
     """Respond when the key is pressed down"""
     if event.key == pygame.K_RIGHT:
@@ -38,7 +38,8 @@ def check_keydown_events(
         sys.exit()
     elif event.key == pygame.K_p and not statistics.game_active:
         start_game(
-            statistics,aliens,bullets,screen_setting,screen,ship_1
+            statistics,aliens,bullets,screen_setting,screen,ship_1,
+            score_details
             )
 
 def check_keyup_events(event, ship_1):
@@ -69,7 +70,8 @@ def check_events(
                 #call keydown function for button pressed down
                 check_keydown_events(
                     event,ship_1,bullet_setting,bullets,screen,
-                    statistics,aliens,bullets,screen_setting
+                    statistics,aliens,bullets,screen_setting,
+                    score_details
                     )
             elif event.type == pygame.KEYUP:
                 #call keyup function for button released
@@ -119,6 +121,7 @@ def start_game(
     score_details.prepare_score()
     score_details.prepare_high_score()
     score_details.prepare_level()
+    score_details.prepare_ships()
 
     #Then reset dynamic settings (level settings)
     screen_setting.initialize_dynamic_settings()
