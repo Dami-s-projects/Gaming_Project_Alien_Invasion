@@ -41,6 +41,9 @@ alien-invasion/
 ├── settings.py          # Game configuration settings
 ├── ship.py             # Player ship class
 ├── bullet.py           # Bullet class
+├── game_stats.py       #Class tracks statistics like score and High scores
+├── button.py           #Class creates button that is displayed on screen
+├── score_board.py #class displays tracked statistics of game_stats on screen.
 └── alien.py            # Alien class
 ```
 
@@ -67,7 +70,7 @@ alien-invasion/
 
 ## Current Status
 
-This project is currently completed. I'm actively learning and improving it as I develop my programming skills.
+This project is currently completed. The project, however, is open to contributions.
 
 ### Working Features
 ✅ Ship movement in all directions  
