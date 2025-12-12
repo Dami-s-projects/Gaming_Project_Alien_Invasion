@@ -320,7 +320,7 @@ def update_aliens(aliens,screen_setting,ship_1,statistics,screen,bullets
                  ,score_details)
     #Check to see if any alien has reached the bottom of the screen
     check_aliens_bottom(
-        screen_setting,statistics,screen,ship_1,aliens,bullets
+        screen_setting,statistics,screen,ship_1,aliens,bullets,score_details
         )
 
 
@@ -357,6 +357,7 @@ def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets
 
 def check_aliens_bottom(
         screen_setting, statistics, screen, ship_1, aliens,bullets,
+        score_details
         ):
     """Check to see if any alien has reached screen bottom"""
     screen_rect = screen.get_rect()
@@ -364,5 +365,6 @@ def check_aliens_bottom(
         if alien.rect.bottom >= screen_rect.bottom:
             #When any alien reaches bottom restart the game (game over)
             #Treat it the same way we treat alien to ship collision.
-            ship_hit(screen_setting,statistics,screen,ship_1,aliens,bullets)
+            ship_hit(screen_setting,statistics,screen,ship_1,aliens,bullets,
+                     score_details)
             break
