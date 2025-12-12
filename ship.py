@@ -6,7 +6,7 @@ class Ship(Sprite):
 
     def __init__(self,speed_setting,screen):
         """initialize the ship and sets its starting position"""
-        super(self).__init__()
+        super(Ship, self).__init__()
         self.screen = screen
         self.speed_setting = speed_setting
 
