@@ -67,7 +67,7 @@ alien-invasion/
 
 ## Current Status
 
-This project is a work in progress. I'm actively learning and improving it as I develop my programming skills.
+This project is currently completed. I'm actively learning and improving it as I develop my programming skills.
 
 ### Working Features
 ✅ Ship movement in all directions  
@@ -75,13 +75,13 @@ This project is a work in progress. I'm actively learning and improving it as I 
 ✅ Alien fleet generation  
 ✅ Aliens moving and changing direction at edges  
 ✅Collision detection between bullets and aliens
+✅Implement scoring system
+✅Game over and restart functionality
+✅Implemented increasing difficulty levels
 
 ### Planned Improvements
-- Implement scoring system
-- Add game over and restart functionality
 - Create start menu
 - Add sound effects
-- Implement increasing difficulty levels
 
 ## Acknowledgments
 
