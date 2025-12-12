@@ -59,7 +59,8 @@ def run_game():
             game_fns.update_bullets(bullets,aliens,screen_setting,screen,ship_1
             ,statistics,score_details)
             game_fns.update_aliens(
-                aliens,screen_setting,ship_1,statistics,screen,bullets
+                aliens,screen_setting,ship_1,statistics,screen,bullets,
+                score_details
                 )
 
         #displays and update screen each iteration

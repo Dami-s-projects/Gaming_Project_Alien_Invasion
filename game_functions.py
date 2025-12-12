@@ -307,7 +307,8 @@ def change_fleet_direction(screen_setting,aliens):
     screen_setting.fleet_direction = screen_setting.fleet_direction  * -1
 
 
-def update_aliens(aliens,screen_setting,ship_1,statistics,screen,bullets):
+def update_aliens(aliens,screen_setting,ship_1,statistics,screen,bullets
+                  ,score_details):
     """Check if alien is at the edge before
     Updating position of alien fleet"""
     check_fleet_edges(screen_setting,aliens)
@@ -315,19 +316,24 @@ def update_aliens(aliens,screen_setting,ship_1,statistics,screen,bullets):
     #look for alien-ship collisions.
     if pygame.sprite.spritecollideany(ship_1,aliens):
         #Call ship_hit function when ship collides with aliens
-        ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets)
+        ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets
+                 ,score_details)
     #Check to see if any alien has reached the bottom of the screen
     check_aliens_bottom(
         screen_setting,statistics,screen,ship_1,aliens,bullets
         )
 
 
-def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets):
+def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets
+             ,score_details):
     """Performs operations when ship hits alien"""
 
     if statistics.ships_left > 1:
         #Firstly, decrement the number of ships left
         statistics.ships_left = statistics.ships_left -1
+
+        #Update Scoreboard when ship decreases so no of ship images decreases
+        score_details.prepare_ships()
 
         #Secondly, Empty the number of aliens and bullets on screen
         aliens.empty()
