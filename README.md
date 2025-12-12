@@ -77,10 +77,10 @@ This project is currently completed. The project, however, is open to contributi
 ✅ Bullet firing with limit system  
 ✅ Alien fleet generation  
 ✅ Aliens moving and changing direction at edges  
-✅Collision detection between bullets and aliens
-✅Implement scoring system
-✅Game over and restart functionality
-✅Implemented increasing difficulty levels
+✅ Collision detection between bullets and aliens
+✅ Implement scoring system
+✅ Game over and restart functionality
+✅ Implemented increasing difficulty levels
 
 ### Planned Improvements
 - Create start menu
