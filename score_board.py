@@ -46,6 +46,8 @@ class Scoreboard():
         self.screen.blit(self.high_score_image,self.high_score_rect)
         #show level
         self.screen.blit(self.level_image,self.level_number_rect)
+        #show ships left
+        self.ships.draw(self.screen)
 
     def prepare_high_score(self):
         """Convert the integer High score to image"""
