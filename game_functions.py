@@ -355,6 +355,8 @@ def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets
         # loop -(alien_invasion.py)
 
     else:
+        statistics.ships_left = statistics.ships_left -1
+        score_details.prepare_ships()
         statistics.game_active = False
         pygame.mouse.set_visible(True)
 
