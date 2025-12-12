@@ -1,13 +1,16 @@
 import pygame.font
+from pygame.sprite import Group
+from ship import Ship
 
 class Scoreboard():
     """A class that reports scoring information"""
-    def __init__(self,screen_setting,screen,statistics):
+    def __init__(self,screen_setting,screen,statistics,speed_setting):
         """Initialize score keeping attributes"""
         self.screen = screen
         self.screen_rect = screen.get_rect()
         self.screen_setting = screen_setting
         self.statistics = statistics
+        self.speed_setting = speed_setting
 
         #(Font settings for colour information
 
@@ -22,6 +25,7 @@ class Scoreboard():
         self.prepare_score()
         self.prepare_high_score()
         self.prepare_level()
+        self.prepare_ships()
 
     def prepare_score(self):
         """Method turns the score into a rendered image"""
@@ -69,4 +73,16 @@ class Scoreboard():
         self.level_number_rect = self.level_image.get_rect()
         self.level_number_rect.right = self.score_rect.right
         self.level_number_rect.top = self.score_rect.bottom +20
-        
+    
+    def prepare_ships(self):
+        """function shows number of ships left as images"""
+        self.ships = Group()
+        #make the ship images number the same as the number on ship left
+        for ship_number_count in range(self.screen_setting.ship_limit):
+            #create a ship image and add to group
+            ship = Ship(self.speed_setting,self.screen)
+            #Position each ship at the right next to each other.
+            #position is 10 pixels (10px) below the top left 
+            ship.rect.y=10
+            ship.rect.x = 10 + (ship_number_count *ship.rect.width)
+            self.ships.add(ship)

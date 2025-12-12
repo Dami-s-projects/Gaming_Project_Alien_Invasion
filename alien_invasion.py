@@ -29,7 +29,7 @@ def run_game():
 
     #Create an instance to store game statistics and create scoreboard
     statistics = GameStats(screen_setting)
-    score_details =Scoreboard(screen_setting,screen,statistics)
+    score_details =Scoreboard(screen_setting,screen,statistics,speed_setting)
 
 
     #Make a ship
