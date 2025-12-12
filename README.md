@@ -4,7 +4,7 @@ A classic space shooter game built with Python and Pygame, inspired by the iconi
 
 ## About The Project
 
-This is a learning project I built to develop my Python programming skills and understand game development fundamentals. The player controls a spaceship that can move in all directions and shoot bullets at descending waves of aliens.
+This is a complete game project I built to develop my Python programming skills and understand game development fundamentals. Players control a spaceship defending against waves of descending aliens, with increasing difficulty across multiple levels.
 
 ## Features
 
@@ -14,6 +14,24 @@ This is a learning project I built to develop my Python programming skills and u
 - **Edge Detection**: Aliens change direction and drop down when reaching screen edges
 - **Collision System**: Bullet management with automatic cleanup when bullets leave the screen
 - **Start Button**: Launch the game using either the Play button or the P key for quick access
+
+### Game Systems
+- **Collision Detection**: Fully implemented bullet-to-alien and alien-to-ship collision systems
+- **Scoring System**: Earn points for destroying aliens, with scores increasing at higher levels
+- **High Score Tracking**: Your best score persists across game sessions
+- **Lives System**: Start with 3 ships; lose a life when hit by aliens or when aliens reach the bottom
+- **Progressive Difficulty**: Game speed and alien point values increase with each level
+- **Level Progression**: Clear all aliens to advance to the next, more challenging level
+
+### User Interface
+- **Start Menu**: Launch the game using either the on-screen Play button or press P
+- **Live Scoreboard**: Real-time display of current score, high score, current level, and remaining ships
+- **Game Over State**: Returns to menu when all ships are lost, allowing restart
+
+### User Interface
+- **Start Menu**: Launch the game using either the on-screen Play button or press P
+- **Live Scoreboard**: Real-time display of current score, high score, current level, and remaining ships
+- **Game Over State**: Returns to menu when all ships are lost, allowing restart
 
 ## Tech Stack
 
@@ -29,24 +47,23 @@ This is a learning project I built to develop my Python programming skills and u
 | ← | Move ship left |
 | → | Move ship right |
 | SPACE | Fire bullet |
-| P | Start game |
+| P | Start game/Restart game |
 | Q | Quit game |
 
 ## Project Structure
 
 ```
 alien-invasion/
-├── alien_invasion.py    # Main game loop
+├── alien_invasion.py    # Main game loop and initialization
 ├── game_functions.py    # Game logic and helper functions
-├── settings.py          # Game configuration settings
-├── ship.py             # Player ship class
-├── bullet.py           # Bullet class
-├── game_stats.py       #Class tracks statistics like score and High scores
-├── button.py           #Class creates button that is displayed on screen
-├── score_board.py #class displays tracked statistics of game_stats on screen.
-└── alien.py            # Alien class
+├── settings.py          # Game configuration and dynamic difficulty settings
+├── ship.py             # Player ship class with movement logic
+├── bullet.py           # Bullet class with firing mechanics
+├── alien.py            # Alien class with fleet behavior
+├── game_stats.py       # Game statistics tracking (score, lives, level)
+├── score_board.py      # Scoreboard display and rendering
+└── button.py           # UI button class for menu system
 ```
-
 ## How to Run
 
 1. Make sure you have Python installed
@@ -59,6 +76,25 @@ alien-invasion/
    python alien_invasion.py
    ```
 
+## Gameplay Mechanics
+
+### Scoring
+- Each alien destroyed earns points
+- Point values increase with each level
+- High score automatically saves and persists between sessions
+
+### Difficulty Progression
+- Ship speed increases each level
+- Alien speed increases each level
+- Bullet speed increases each level
+- Alien point values scale up with difficulty
+
+### Win/Loss Conditions
+- **Win a level**: Destroy all aliens before they reach the bottom or hit your ship
+- **Lose a life**: Get hit by an alien or allow aliens to reach the screen bottom
+- **Game Over**: All three ships destroyed
+
+
 ## What I Learned
 
 - **Object-Oriented Programming**: Organized code using classes for different game entities
@@ -70,26 +106,43 @@ alien-invasion/
 
 ## Current Status
 
-This project is currently completed. The project, however, is open to contributions.
+**Project Status: Complete** ✅
 
-### Working Features
-✅ Ship movement in all directions  
-✅ Bullet firing with limit system  
-✅ Alien fleet generation  
-✅ Aliens moving and changing direction at edges  
-✅ Collision detection between bullets and aliens
-✅ Implement scoring system
-✅ Game over and restart functionality
-✅ Implemented increasing difficulty levels
+This project is fully functional with all planned core features implemented. The game is playable, stable, and demonstrates solid understanding of game development principles.
 
-### Planned Improvements
-- Create start menu
-- Add sound effects
+### Completed Features
+✅ Ship movement in all four directions  
+✅ Bullet firing system with ammunition limit  
+✅ Dynamic alien fleet generation  
+✅ Alien movement patterns with edge detection  
+✅ Complete collision detection system  
+✅ Scoring and high score tracking  
+✅ Lives/health system  
+✅ Game over and restart functionality  
+✅ Progressive difficulty scaling  
+✅ Level progression system  
+✅ Interactive start menu  
+✅ Live scoreboard display  
+
+### Future Enhancements
+- Custom start menu with settings options
+- Sound effects and background music
+- Power-ups and special weapons
+
+
+## Code Highlights
+
+This project demonstrates:
+- Clean separation of concerns across multiple modules
+- Efficient use of Pygame's sprite and group systems
+- Dynamic difficulty scaling based on game progression
+- Proper game state management
+- Professional code organization and documentation
 
 ## Acknowledgments
 
-This project was built while following along with learning resources and adapted with my own modifications to reinforce my understanding of Python and game development concepts.
+This project was built by following Eric Matthes' "Python Crash Course" tutorial, with my own extensions and modifications to reinforce my understanding of Python and game development concepts. I added features and customizations beyond the base tutorial to demonstrate my learning.
 
 ---
 
-*This is a personal learning project created as part of my journey in software development.*
+*This is a personal learning project that demonstrates practical application of programming concepts in game development.*
