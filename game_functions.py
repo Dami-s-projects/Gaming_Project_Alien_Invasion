@@ -1,14 +1,32 @@
 import sys                  #These are the modules
-import pygame            #that is needed for this particular code file to work
+import pygame 
+import json           #that is needed for this particular code file to work
 from bullet import Bullet #import bullet class needed for creating a bullet
 from alien import Alien
 from time import sleep
+
+def write_high_score(statistics):
+    """Function writes a player high score to a file"""
+    file_name = "players_highscore.json"
+    high_score =statistics.high_score
+    with open(file_name,"w") as high_score_file:
+        json.dump(high_score,high_score_file)
+    
+def read_high_score():
+    """Function reads a player high score from a file"""
+    pass
 
 def check_high_score(statistics,score_details):
     """Function checks to see if current high score is outdated"""
     if statistics.score > statistics.high_score:
         statistics.high_score = statistics.score
         score_details.prepare_high_score()
+        #write high score to an external file after displaying it to screen
+
+        #Round the High score value before writing file. Modify original
+        statistics.high_score = round(statistics.high_score, -1)
+        #write file
+        write_high_score(statistics)
         
 
 def fire_bullets(bullet,bullet_setting,screen,ship_1):
