@@ -1,3 +1,5 @@
+from game_functions import read_high_score
+
 class GameStats():
     """Class tracks the statistics for the game"""
 
@@ -5,8 +7,8 @@ class GameStats():
         """Initializations of statistics"""
         self.screen_setting = screen_setting
 
-        #Initialized high score attribute, High score should never be reset
-        self.high_score =  0
+        #Initialized high score attribute, to always be the one from file
+        self.high_score =  read_high_score(self)
 
         self.reset_stats()
 

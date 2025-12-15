@@ -12,9 +12,12 @@ def write_high_score(statistics):
     with open(file_name,"w") as high_score_file:
         json.dump(high_score,high_score_file)
     
-def read_high_score():
+def read_high_score(statistics):
     """Function reads a player high score from a file"""
-    pass
+    file_name = "players_highscore.json"
+    with open(file_name,"r") as high_score_file:
+        high_score = json.load(high_score_file)
+        return high_score
 
 def check_high_score(statistics,score_details):
     """Function checks to see if current high score is outdated"""
