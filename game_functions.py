@@ -186,7 +186,7 @@ def update_screen(
     pygame.display.flip()
 
 def update_bullets(bullets,aliens,screen_setting,screen,ship_1
-    ,statistics,score_details):
+    ,statistics,score_details,explosion):
     """Move the bullets and get rid of the one that have left screen"""
     bullets.update() #calls the update method of the Bullet class not the
     #one for ship class
@@ -194,6 +194,7 @@ def update_bullets(bullets,aliens,screen_setting,screen,ship_1
     #Call function that checks collision
     check_bullet_and_alien_collision(
         bullets,aliens,screen_setting,screen,ship_1,statistics,score_details
+        ,explosion
         )
 
     #Get rid of bullets that have reached the top of the screen, instead
@@ -205,7 +206,7 @@ def update_bullets(bullets,aliens,screen_setting,screen,ship_1
 
 def check_bullet_and_alien_collision(
         bullets,aliens,screen_setting,screen,ship_1
-        ,statistics,score_details
+        ,statistics,score_details,explosion
         ):
      #Check collision. Check for any bullet that have hit alien,
     #if so, delete the bullet and the alien.
@@ -214,6 +215,12 @@ def check_bullet_and_alien_collision(
     if collisions: #checks whether the variable is not none #checks 
                         #to see if collisions exist
         for aliens in collisions.values():
+
+            #Play explosion sound when alien is hit by bullet
+            #firstly, lets not make it very loud
+            explosion.decrease_sound_volume()
+            explosion.play_shooting_sound()
+
             statistics.score =(statistics.score+(screen_setting.alien_points
              *len(aliens)))
             score_details.prepare_score()

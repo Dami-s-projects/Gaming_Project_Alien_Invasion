@@ -30,6 +30,7 @@ def run_game():
 
     #Instantiance sound class
     shooting_sound_effect=Sound("alien_invasion\\sounds\\bullet_shot.ogg")
+    explosion=Sound("alien_invasion\\sounds\\alien_explosion_sound.ogg")
 
     #Create an instance to store game statistics and create scoreboard
     statistics = GameStats(screen_setting)
@@ -62,7 +63,7 @@ def run_game():
             #moving the ship to the right by 1 px if right key was pressed
 
             game_fns.update_bullets(bullets,aliens,screen_setting,screen,ship_1
-            ,statistics,score_details)
+            ,statistics,score_details,explosion)
             game_fns.update_aliens(
                 aliens,screen_setting,ship_1,statistics,screen,bullets,
                 score_details
