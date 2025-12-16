@@ -32,16 +32,18 @@ def check_high_score(statistics,score_details):
         write_high_score(statistics)
         
 
-def fire_bullets(bullet,bullet_setting,screen,ship_1):
+def fire_bullets(bullet,bullet_setting,screen,ship_1,shooting_sound_effect):
     """Fire a bullet if limit is not reached (limit of 3 here)"""
     if len(bullet) < bullet_setting.bullets_allowed:
         # Create a new bullet and add it to the bullets group
+        shooting_sound_effect.play_shooting_sound()
         new_bullet = Bullet(bullet_setting,screen,ship_1)
         bullet.add(new_bullet) #add the new bullet to the group
 
 def check_keydown_events(
         event, ship_1,bullet_setting,bullet,screen,
-        statistics,aliens,bullets,screen_setting,score_details
+        statistics,aliens,bullets,screen_setting,score_details,
+        shooting_sound_effect
         ):
     """Respond when the key is pressed down"""
     if event.key == pygame.K_RIGHT:
@@ -54,7 +56,7 @@ def check_keydown_events(
     elif event.key == pygame.K_DOWN:  #sets the moving down flag to true when
         ship_1.moving_down = True      #down key is pressed
     elif event.key == pygame.K_SPACE: #when user presses space bar
-        fire_bullets(bullet,bullet_setting,screen,ship_1)
+        fire_bullets(bullet,bullet_setting,screen,ship_1,shooting_sound_effect)
     elif event.key == pygame.K_q:
         sys.exit()
     elif event.key == pygame.K_p and not statistics.game_active:
@@ -80,7 +82,7 @@ def check_keyup_events(event, ship_1):
 
 def check_events(
         ship_1,bullet_setting,screen,bullets,statistics,play_button
-        ,aliens,screen_setting,score_details
+        ,aliens,screen_setting,score_details,shooting_sound_effect
         ):
     """A function that contains code that responds to key presses 
     and mouse events"""
@@ -92,7 +94,7 @@ def check_events(
                 check_keydown_events(
                     event,ship_1,bullet_setting,bullets,screen,
                     statistics,aliens,bullets,screen_setting,
-                    score_details
+                    score_details,shooting_sound_effect
                     )
             elif event.type == pygame.KEYUP:
                 #call keyup function for button released

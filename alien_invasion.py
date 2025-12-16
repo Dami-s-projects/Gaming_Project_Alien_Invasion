@@ -6,6 +6,7 @@ import game_functions as game_fns
 from game_stats import GameStats
 from button import Button
 from score_board import Scoreboard
+from sounds import Sound
 
 ####Dami just remember that settings.py is the module name and the second
 #is the class name, it is simply #from module_name import Class_name
@@ -26,6 +27,9 @@ def run_game():
 
     #Make the play button (i.e. make an innstance of button class)
     play_button = Button(screen_setting,screen,"Play")
+
+    #Instantiance sound class
+    shooting_sound_effect=Sound("alien_invasion\\sounds\\bullet_shot.ogg")
 
     #Create an instance to store game statistics and create scoreboard
     statistics = GameStats(screen_setting)
@@ -50,7 +54,8 @@ def run_game():
         ###code that watches for Keyboard and mouse events
         game_fns.check_events(
             ship_1,bullet_setting,screen,bullets,statistics,play_button
-            ,aliens,screen_setting,score_details)  #changes the attribute of 
+            ,aliens,screen_setting,score_details
+            ,shooting_sound_effect)  #changes the attribute of 
         if statistics.game_active:
             #moving right to true
             ship_1.update()   #calls the update method of ship, which ends up
