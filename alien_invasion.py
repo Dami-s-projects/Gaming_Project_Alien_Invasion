@@ -7,6 +7,7 @@ from game_stats import GameStats
 from button import Button
 from score_board import Scoreboard
 from sounds import Sound
+from sounds import BackgroundMusic
 
 ####Dami just remember that settings.py is the module name and the second
 #is the class name, it is simply #from module_name import Class_name
@@ -30,6 +31,9 @@ def run_game():
 
     #Instantiance sound class
     shooting_sound_effect=Sound("alien_invasion\\sounds\\bullet_shot.ogg")
+    background_music=BackgroundMusic(
+        "alien_invasion\\sounds\\alien_invasion_background_music.ogg"
+    )
     explosion=Sound("alien_invasion\\sounds\\alien_explosion_sound.ogg")
 
     #Create an instance to store game statistics and create scoreboard
@@ -56,7 +60,7 @@ def run_game():
         game_fns.check_events(
             ship_1,bullet_setting,screen,bullets,statistics,play_button
             ,aliens,screen_setting,score_details
-            ,shooting_sound_effect)  #changes the attribute of 
+            ,shooting_sound_effect,background_music)  #changes the attribute of 
         if statistics.game_active:
             #moving right to true
             ship_1.update()   #calls the update method of ship, which ends up
@@ -66,7 +70,7 @@ def run_game():
             ,statistics,score_details,explosion)
             game_fns.update_aliens(
                 aliens,screen_setting,ship_1,statistics,screen,bullets,
-                score_details
+                score_details,background_music
                 )
 
         #displays and update screen each iteration
