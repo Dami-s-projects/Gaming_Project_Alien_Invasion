@@ -15,8 +15,8 @@ class Sound():
         self.sound.play()
     
     def decrease_sound_volume(self):
-        """Reduces the sound volume, makes it a bit lower (20 percent)"""
-        self.sound.set_volume(0.2)
+        """Reduces the sound volume, makes it a bit lower (50 percent)"""
+        self.sound.set_volume(0.5)
 
 class BackgroundMusic(Sound):
     def __init__(self, filename):
