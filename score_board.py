@@ -83,6 +83,9 @@ class Scoreboard():
         for ship_number_count in range(self.statistics.ships_left):
             #create a ship image and add to group
             ship = Ship(self.speed_setting,self.screen)
+            #make ship smaller
+            ship.make_ship_smaller()
+            
             #Position each ship at the right next to each other.
             #position is 10 pixels (10px) below the top left 
             ship.rect.y=10

@@ -61,4 +61,13 @@ class Ship(Sprite):
         self.ship_yaxis = self.screen_rect.bottom -(
             self.rect.height/2
             )
+    def make_ship_smaller(self):
+        """Makes the ship to be half of its size"""
+        #Let the ship have a width of 60 and height of 90
+        self.rect.width = 60
+        self.rect.height =90
+        self.image = pygame.transform.scale(
+            self.image,(self.rect.width,self.rect.height))
+
+
         
