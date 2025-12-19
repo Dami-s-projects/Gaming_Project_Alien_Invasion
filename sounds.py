@@ -23,10 +23,15 @@ class BackgroundMusic(Sound):
         super().__init__(filename)
         self.filename = filename
 
+        #This is the default time stamp, meaning song
+        #starts from the beginnning except for the 
+        # game end music that plays whenever game ends 
+        self.music_time_stamp = 0
+
     def play_music(self):
         """Plays background music"""
         pygame.mixer.music.load(self.filename)
-        pygame.mixer.music.play(-1)
+        pygame.mixer.music.play(-1,self.music_time_stamp)
 
     def stop_music(self):
         """Stop background music"""
