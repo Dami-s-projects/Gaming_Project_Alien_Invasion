@@ -18,11 +18,9 @@ class Sound():
         """Reduces the sound volume, makes it a bit lower (50 percent)"""
         self.sound.set_volume(0.5)
 
-class BackgroundMusic(Sound):
+class BackgroundMusic():
     def __init__(self, filename):
-        super().__init__(filename)
         self.filename = filename
-
         #This is the default time stamp, meaning song
         #starts from the beginnning except for the 
         # game end music that plays whenever game ends 
