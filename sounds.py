@@ -31,3 +31,16 @@ class BackgroundMusic(Sound):
     def stop_music(self):
         """Stop background music"""
         pygame.mixer.music.stop()
+    
+    def save_and_stop_music(self):
+        """This method should save the time at which a music was stopped
+        snd then stop the music, the saved time ensures
+        that the music can continue where it left off."""
+
+        # update attribute to get the time the music stop.
+        self.music_time_stamp = pygame.mixer.music.get_pos()/1000 
+        #divided by 1000 converts the timestamp of the music from
+        #the default milliseconds that would have been detected to seconds.
+
+        #Stop music
+        pygame.mixer.music.stop()
