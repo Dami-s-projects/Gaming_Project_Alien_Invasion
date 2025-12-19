@@ -34,11 +34,21 @@ def run_game():
     background_music=BackgroundMusic(
         "alien_invasion\\sounds\\alien_invasion_background_music.ogg"
     )
+
+    #make another instance of the background music and pass the other sound
+    #as the arguement
+    calm_music=BackgroundMusic(
+        "alien_invasion\\sounds\\alien_invasion_gameoff_track.ogg"
+        )
+    
     explosion=Sound("alien_invasion\\sounds\\alien_explosion_sound.ogg")
 
     #Create an instance to store game statistics and create scoreboard
     statistics = GameStats(screen_setting)
     score_details =Scoreboard(screen_setting,screen,statistics,speed_setting)
+    
+    #Play the music immediately game begins
+    calm_music.play_music()
 
 
     #Make a ship
@@ -60,7 +70,8 @@ def run_game():
         game_fns.check_events(
             ship_1,bullet_setting,screen,bullets,statistics,play_button
             ,aliens,screen_setting,score_details
-            ,shooting_sound_effect,background_music)  #changes the attribute of 
+            ,shooting_sound_effect,background_music,
+            calm_music)  #changes the attribute of 
         if statistics.game_active:
             #moving right to true
             ship_1.update()   #calls the update method of ship, which ends up
@@ -70,7 +81,7 @@ def run_game():
             ,statistics,score_details,explosion)
             game_fns.update_aliens(
                 aliens,screen_setting,ship_1,statistics,screen,bullets,
-                score_details,background_music
+                score_details,background_music,calm_music
                 )
 
         #displays and update screen each iteration

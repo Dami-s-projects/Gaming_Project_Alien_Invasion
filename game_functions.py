@@ -43,7 +43,7 @@ def fire_bullets(bullet,bullet_setting,screen,ship_1,shooting_sound_effect):
 def check_keydown_events(
         event, ship_1,bullet_setting,bullet,screen,
         statistics,aliens,bullets,screen_setting,score_details,
-        shooting_sound_effect,background_music
+        shooting_sound_effect,background_music,calm_music
         ):
     """Respond when the key is pressed down"""
     if event.key == pygame.K_RIGHT:
@@ -62,7 +62,7 @@ def check_keydown_events(
     elif event.key == pygame.K_p and not statistics.game_active:
         start_game(
             statistics,aliens,bullets,screen_setting,screen,ship_1,
-            score_details,background_music
+            score_details,background_music,calm_music
             )
 
 def check_keyup_events(event, ship_1):
@@ -83,7 +83,7 @@ def check_keyup_events(event, ship_1):
 def check_events(
         ship_1,bullet_setting,screen,bullets,statistics,play_button
         ,aliens,screen_setting,score_details,shooting_sound_effect,
-        background_music
+        background_music,calm_music
         ):
     """A function that contains code that responds to key presses 
     and mouse events"""
@@ -96,7 +96,7 @@ def check_events(
                     event,ship_1,bullet_setting,bullets,screen,
                     statistics,aliens,bullets,screen_setting,
                     score_details,shooting_sound_effect,
-                    background_music
+                    background_music,calm_music
                     )
             elif event.type == pygame.KEYUP:
                 #call keyup function for button released
@@ -108,14 +108,15 @@ def check_events(
                 #Check to see whether button was tapped
                 check_play_button(statistics,play_button,mouse_x,mouse_y
                                   ,ship_1,aliens,bullets,screen_setting,screen
-                                  ,score_details,background_music
+                                  ,score_details,background_music,calm_music
                                   
                                   )
             
 
 def check_play_button(
         statistics,play_button,mouse_x,mouse_y,ship_1,aliens,bullets
-        ,screen_setting,screen,score_details,background_music
+        ,screen_setting,screen,score_details,background_music,
+        calm_music
         ):
     """Starts a new game when the player clicks 'Play'. """
     
@@ -125,7 +126,7 @@ def check_play_button(
     if button_clicked and not statistics.game_active:
         start_game(
         statistics,aliens,bullets,screen_setting,screen,ship_1,score_details
-        ,background_music
+        ,background_music,calm_music
         )
 
         
@@ -133,14 +134,16 @@ def check_play_button(
             
 def start_game(
         statistics,aliens,bullets,screen_setting,screen,ship_1,score_details,
-        background_music
+        background_music,calm_music
         ):
     """Function starts game and reset settings"""               
     #Hide Mouse cursor when game is active
     pygame.mouse.set_visible(False)
     #If button was tapped, set game_active to True i.e. Game Starts!!!
     statistics.game_active = True
-
+    
+    #Save the time that the start music stopped
+    calm_music.save_and_stop_music()
     #play background music
     background_music.play_music()
 
@@ -348,7 +351,7 @@ def change_fleet_direction(screen_setting,aliens):
 
 
 def update_aliens(aliens,screen_setting,ship_1,statistics,screen,bullets
-                  ,score_details,background_music):
+                  ,score_details,background_music,calm_music):
     """Check if alien is at the edge before
     Updating position of alien fleet"""
     check_fleet_edges(screen_setting,aliens)
@@ -357,15 +360,15 @@ def update_aliens(aliens,screen_setting,ship_1,statistics,screen,bullets
     if pygame.sprite.spritecollideany(ship_1,aliens):
         #Call ship_hit function when ship collides with aliens
         ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets
-                 ,score_details,background_music)
+                 ,score_details,background_music,calm_music)
     #Check to see if any alien has reached the bottom of the screen
     check_aliens_bottom(
         screen_setting,statistics,screen,ship_1,aliens,bullets,score_details
-        ,background_music)
+        ,background_music,calm_music)
 
 
 def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets
-             ,score_details,background_music):
+             ,score_details,background_music,calm_music):
     """Performs operations when ship hits alien"""
 
     if statistics.ships_left > 1:
@@ -396,11 +399,13 @@ def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets
         score_details.prepare_ships()
         statistics.game_active = False
         background_music.stop_music()
+        #Play the other music from where it left off
+        calm_music.play_music()
         pygame.mouse.set_visible(True)
 
 def check_aliens_bottom(
         screen_setting, statistics, screen, ship_1, aliens,bullets,
-        score_details,background_music
+        score_details,background_music,calm_music
         ):
     """Check to see if any alien has reached screen bottom"""
     screen_rect = screen.get_rect()
@@ -409,5 +414,5 @@ def check_aliens_bottom(
             #When any alien reaches bottom restart the game (game over)
             #Treat it the same way we treat alien to ship collision.
             ship_hit(screen_setting,statistics,screen,ship_1,aliens,bullets,
-                     score_details,background_music)
+                     score_details,background_music,calm_music)
             break
