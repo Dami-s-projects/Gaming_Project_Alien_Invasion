@@ -1,5 +1,7 @@
 # Alien Invasion
 
+**Version: 1.0.0**
+
 A classic space shooter game built with Python and Pygame, inspired by the iconic Space Invaders arcade game.
 
 ## About The Project
