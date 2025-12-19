@@ -22,10 +22,10 @@ class BackgroundMusic(Sound):
     def __init__(self, filename):
         super().__init__(filename)
         self.filename = filename
-        pygame.mixer.music.load(filename)
 
     def play_music(self):
         """Plays background music"""
+        pygame.mixer.music.load(self.filename)
         pygame.mixer.music.play(-1)
 
     def stop_music(self):
