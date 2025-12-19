@@ -28,10 +28,15 @@ This is a complete game project I built to develop my Python programming skills 
 - **Live Scoreboard**: Real-time display of current score, high score, current level, and remaining ships
 - **Game Over State**: Returns to menu when all ships are lost, allowing restart
 
-### User Interface
-- **Start Menu**: Launch the game using either the on-screen Play button or press P
-- **Live Scoreboard**: Real-time display of current score, high score, current level, and remaining ships
-- **Game Over State**: Returns to menu when all ships are lost, allowing restart
+### Audio
+- **Dynamic Background Music**: 
+  - Menu music plays during game start screen and game over
+  - Gameplay music activates during active play sessions
+  - Music transitions seamlessly between game states
+- **Sound Effects**: 
+  - Shooting sound when bullets are fired
+  - Explosion sound when aliens are destroyed
+  - Audio feedback for enhanced game experience
 
 ## Tech Stack
 
@@ -103,6 +108,8 @@ alien-invasion/
 - **Sprite Groups**: Used Pygame's Group class for efficient sprite management
 - **Collision Detection**: Implemented basic collision systems
 - **Code Organization**: Separated concerns across multiple modules for maintainability
+- **Audio Integration**: Implemented dynamic background music system that responds to game states, with separate tracks for menu and gameplay
+- **Game Polish**: Added audio feedback and music transitions to improve game feel and user engagement
 
 ## Current Status
 
@@ -123,10 +130,11 @@ This project is fully functional with all planned core features implemented. The
 ✅ Level progression system  
 ✅ Interactive start menu  
 ✅ Live scoreboard display  
+✅ Sound effects and background music
+
 
 ### Future Enhancements
 - Custom start menu with settings options
-- Sound effects and background music
 - Power-ups and special weapons
 
 
@@ -141,7 +149,9 @@ This project demonstrates:
 
 ## Acknowledgments
 
-This project was built by following Eric Matthes' "Python Crash Course" tutorial, with my own extensions and modifications to reinforce my understanding of Python and game development concepts. I added features and customizations beyond the base tutorial to demonstrate my learning.
+This project was built by following Eric Matthes' *Python Crash Course* tutorial, with my own extensions, modifications, and original audio content.
+
+**Audio:** Background music and sound effects created by me.
 
 ---
 
