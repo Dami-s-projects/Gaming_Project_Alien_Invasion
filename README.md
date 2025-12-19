@@ -78,10 +78,18 @@ alien-invasion/
    ```bash
    pip install pygame
    ```
-3. Run the game:
+3. Navigate to the project root directory
+4. Run the game:
    ```bash
    python alien_invasion.py
    ```
+
+## Troubleshooting
+
+**FileNotFoundError for images or sounds**
+- Ensure you're running from the project root (not from inside subdirectories)
+- Verify `images/` and `sounds/` folders exist with all assets
+
 
 ## Gameplay Mechanics
 
