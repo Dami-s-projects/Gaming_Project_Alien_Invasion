@@ -9,7 +9,7 @@ A classic space shooter game built with Python and Pygame, inspired by the iconi
 This is a complete game project I built to develop my Python programming skills and understand game development fundamentals. Players control a spaceship defending against waves of descending aliens, with increasing difficulty across multiple levels.
 
 ## Gameplay Demo
-![Gameplay Demo](game_play_demos\game_demo.gif)
+![Gameplay Demo](alien_invasion\game_play_demos\game_demo.gif)
 *16 seconds of gameplay showing ship movement, alien destruction, and scoring*
 
 ## Features
