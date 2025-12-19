@@ -29,7 +29,18 @@ class BackgroundMusic():
     def play_music(self):
         """Plays background music"""
         pygame.mixer.music.load(self.filename)
-        pygame.mixer.music.play(-1,self.music_time_stamp)
+        try:
+            #This code assumes error happens as a result of
+            #timestamp becoming negative like -5,
+            #in that case max(0,-5) should return the max of 0 to -5,
+            #which is 0, and then the music will start from start
+            if self.music_time_stamp<0:
+                print("Caught an Error")
+            safe_position = max(0.0,self.music_time_stamp)
+            pygame.mixer.music.play(-1,safe_position)
+        except pygame.error:
+            pygame.mixer.music.play(-1)
+            print("Wow, error actually skipped that.")
 
     def stop_music(self):
         """Stop background music"""
