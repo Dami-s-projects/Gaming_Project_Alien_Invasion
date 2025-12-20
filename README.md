@@ -2,6 +2,9 @@
 
 **Version: 1.0.0**
 
+[![Play on itch.io](https://img.shields.io/badge/Play%20on-itch.io-FA5C5C?style=for-the-badge&logo=itch.io&logoColor=white)](https://dami-showcase.itch.io/alien-invasion)
+[![View Source](https://img.shields.io/badge/View-Source%20Code-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Dami-s-projects/Gaming_Project_Alien_Invasion)
+
 A classic space shooter game built with Python and Pygame, inspired by the iconic Space Invaders arcade game.
 
 ## About The Project
