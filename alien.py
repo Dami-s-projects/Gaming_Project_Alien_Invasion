@@ -13,7 +13,7 @@ class Alien(Sprite): #class inherits form Sprite class
         self.speed_setting = speed_setting
 
         #Load the alien and set its rect attribute.
-        self.image=pygame.image.load("alien_invasion\\images\\alienship.bmp")
+        self.image=pygame.image.load("./alien_invasion/images/alienship.bmp")
         self.rect=self.image.get_rect()
 
         #sets its x position by certain pixels away from
