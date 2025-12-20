@@ -1,3 +1,4 @@
+import asyncio                        #Added module that handles web conversion
 import pygame
 from pygame.sprite import Group
 from settings import Settings
@@ -14,7 +15,8 @@ from sounds import BackgroundMusic
 #or from module_name import function_name, it can be 
 #from settings import display_survey_people_names
 
-def run_game():
+#added "async", thats what is required for async module to operate"
+async def run_game():   
     """Creates Alien Invasion game"""
 
     #Initialize game and create a screen object.
@@ -29,19 +31,23 @@ def run_game():
     #Make the play button (i.e. make an innstance of button class)
     play_button = Button(screen_setting,screen,"Play")
 
+
+    ###########
+    # ##The file path needs to change to include the forward slash for web compatibility
+
     #Instantiance sound class
-    shooting_sound_effect=Sound("alien_invasion\\sounds\\bullet_shot.ogg")
+    shooting_sound_effect=Sound("./alien_invasion/sounds/bullet_shot.ogg")
     background_music=BackgroundMusic(
-        "alien_invasion\\sounds\\alien_invasion_background_music.ogg"
+        "./alien_invasion/sounds/alien_invasion_background_music.ogg"
     )
 
     #make another instance of the background music and pass the other sound
     #as the arguement
     calm_music=BackgroundMusic(
-        "alien_invasion\\sounds\\alien_invasion_gameoff_track.ogg"
+        "./alien_invasion/sounds/alien_invasion_gameoff_track.ogg"
         )
     
-    explosion=Sound("alien_invasion\\sounds\\alien_explosion_sound.ogg")
+    explosion=Sound("./alien_invasion/sounds/alien_explosion_sound.ogg")
 
     #Create an instance to store game statistics and create scoreboard
     statistics = GameStats(screen_setting)
@@ -89,8 +95,9 @@ def run_game():
             screen,ship_1,screen_setting,bullets,aliens,statistics,play_button
             ,score_details
             )
+        await asyncio.sleep(0) #code thats needed also
 
 
-run_game()
+asyncio.run(run_game()) #replace the previous call so ayncio calls the run_game function.
 
     
