@@ -120,16 +120,25 @@ class TouchControls:
         )
         
         # Draw d-pad
-        labels = {'left': '◀', 'right': '▶', 'up': '▲', 'down': '▼'}
+                # Draw d-pad with arrow shapes
         for name in ['left', 'right', 'up', 'down']:
             rect = self.buttons[name]
             color = (150, 150, 150, 180) if self.pressed[name] else (100, 100, 100, 120)
             pygame.draw.rect(overlay, color, rect, border_radius=10)
             pygame.draw.rect(overlay, (200, 200, 200, 150), rect, 3, border_radius=10)
             
-            label = self.font.render(labels[name], True, (255, 255, 255))
-            label_rect = label.get_rect(center=rect.center)
-            overlay.blit(label, label_rect)
+            # Draw arrow shape
+            cx, cy = rect.center
+            arrow_color = (255, 255, 255)
+            if name == 'left':
+                points = [(cx+15, cy-15), (cx-15, cy), (cx+15, cy+15)]
+            elif name == 'right':
+                points = [(cx-15, cy-15), (cx+15, cy), (cx-15, cy+15)]
+            elif name == 'up':
+                points = [(cx-15, cy+15), (cx, cy-15), (cx+15, cy+15)]
+            elif name == 'down':
+                points = [(cx-15, cy-15), (cx, cy+15), (cx+15, cy-15)]
+            pygame.draw.polygon(overlay, arrow_color, points)
         
         # Draw fire button
         fire_rect = self.buttons['fire']

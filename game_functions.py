@@ -1,4 +1,4 @@
-import sys                  #These are the modules
+#These are the modules
 import pygame 
 import json           #that is needed for this particular code file to work
 from bullet import Bullet #import bullet class needed for creating a bullet
@@ -91,7 +91,8 @@ def check_events(
     and mouse events"""
     for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit()
+                global game_running
+                game_running = False
             elif event.type == pygame.KEYDOWN:
                 #call keydown function for button pressed down
                 check_keydown_events(
