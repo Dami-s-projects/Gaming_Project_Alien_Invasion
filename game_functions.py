@@ -85,7 +85,7 @@ def check_keyup_events(event, ship_1):
 def check_events(
         ship_1,bullet_setting,screen,bullets,statistics,play_button
         ,aliens,screen_setting,score_details,shooting_sound_effect,
-        background_music,calm_music
+        background_music,calm_music,touch_controls= None
         ):
     """A function that contains code that responds to key presses 
     and mouse events"""
@@ -107,13 +107,31 @@ def check_events(
             #Check if the mouse button was tapped or double-tapped
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x,mouse_y = pygame.mouse.get_pos()
+
+                # Handle touch controls with mouse
+                if touch_controls and statistics.game_active:
+                    if touch_controls.handle_event(event):
+                        fire_bullets(
+                            bullets, bullet_setting, screen, ship_1, 
+                            shooting_sound_effect
+                            )
+            
+
                 #Check to see whether button was tapped
                 check_play_button(statistics,play_button,mouse_x,mouse_y
                                   ,ship_1,aliens,bullets,screen_setting,screen
                                   ,score_details,background_music,calm_music
                                   
                                   )
-            
+            elif event.type == pygame.MOUSEBUTTONUP:
+                if touch_controls:
+                    touch_controls.handle_event(event)
+            # Touch events for mobile
+            elif event.type in (pygame.FINGERDOWN, pygame.FINGERUP, pygame.FINGERMOTION):
+                if touch_controls:
+                    if touch_controls.handle_event(event):
+                        fire_bullets(bullets, bullet_setting, screen, ship_1, shooting_sound_effect)
+                
 
 def check_play_button(
         statistics,play_button,mouse_x,mouse_y,ship_1,aliens,bullets
@@ -140,7 +158,7 @@ def start_game(
         ):
     """Function starts game and reset settings"""               
     #Hide Mouse cursor when game is active
-    pygame.mouse.set_visible(False)
+    pygame.mouse.set_visible(True)
     #If button was tapped, set game_active to True i.e. Game Starts!!!
     statistics.game_active = True
     
@@ -171,7 +189,7 @@ def start_game(
 
 def update_screen(
         screen,ship_1,screen_setting,bullets,aliens,statistics,play_button
-        ,score_details
+        ,score_details,touch_controls=None
         ):
     """A function that contains code that displays ship and 
     shows the latest screen(frame) """
@@ -194,6 +212,10 @@ def update_screen(
     if not statistics.game_active:
         play_button.draw_button()
     
+    # Draw touch controls
+    if touch_controls:
+        touch_controls.draw(statistics.game_active)
+
     #code that makes the most recently drawn screen (scene) visible
     pygame.display.flip()
 

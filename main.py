@@ -9,6 +9,7 @@ from button import Button
 from score_board import Scoreboard
 from sounds import Sound
 from sounds import BackgroundMusic
+from touch_controls import TouchControls
 
 ####Dami just remember that settings.py is the module name and the second
 #is the class name, it is simply #from module_name import Class_name
@@ -63,6 +64,9 @@ async def run_game():
 
     #Make a ship
     ship_1=Ship(speed_setting,screen)
+    
+    #Add touch controls to game (very useful for mobiles)
+    touch_controls = TouchControls(screen_setting,screen)
 
     #Make a group to store bullet in.
     bullets = Group() #but this group is really like an instance of Bullet() 
@@ -81,8 +85,29 @@ async def run_game():
             ship_1,bullet_setting,screen,bullets,statistics,play_button
             ,aliens,screen_setting,score_details
             ,shooting_sound_effect,background_music,
-            calm_music)  #changes the attribute of 
+            calm_music,touch_controls)  #changes the attribute of 
         if statistics.game_active:
+            # Reset movement flags each frame
+            ship_1.moving_left = False
+            ship_1.moving_right = False
+            ship_1.moving_up = False
+            ship_1.moving_down = False
+            
+            # Apply keyboard input
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_LEFT]:
+                ship_1.moving_left = True
+            if keys[pygame.K_RIGHT]:
+                ship_1.moving_right = True
+            if keys[pygame.K_UP]:
+                ship_1.moving_up = True
+            if keys[pygame.K_DOWN]:
+                ship_1.moving_down = True
+            
+
+            #activate touch control before controlling ship
+            touch_controls.apply_to_ship(ship_1)
+
             #moving right to true
             ship_1.update()   #calls the update method of ship, which ends up
             #moving the ship to the right by 1 px if right key was pressed
@@ -97,7 +122,7 @@ async def run_game():
         #displays and update screen each iteration
         game_fns.update_screen(
             screen,ship_1,screen_setting,bullets,aliens,statistics,play_button
-            ,score_details
+            ,score_details,touch_controls
             )
         clock.tick(60)
         await asyncio.sleep(0) #code thats needed also
