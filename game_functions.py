@@ -3,21 +3,21 @@ import pygame
 import json           #that is needed for this particular code file to work
 from bullet import Bullet #import bullet class needed for creating a bullet
 from alien import Alien
-from time import sleep
+#The sleep line causes error and stops web compatibility
+
+_memory_high_score = 0
 
 def write_high_score(statistics):
-    """Function writes a player high score to a file"""
-    file_name = "players_highscore.json"
-    high_score =statistics.high_score
-    with open(file_name,"w") as high_score_file:
-        json.dump(high_score,high_score_file)
+    """Function stores high score in memory"""
+    global _memory_high_score
+    _memory_high_score = statistics.high_score
+
+    
     
 def read_high_score(statistics):
-    """Function reads a player high score from a file"""
-    file_name = "players_highscore.json"
-    with open(file_name,"r") as high_score_file:
-        high_score = json.load(high_score_file)
-        return high_score
+    """Function reads high score from memory"""
+    global _memory_high_score
+    return _memory_high_score
 
 def check_high_score(statistics,score_details):
     """Function checks to see if current high score is outdated"""
@@ -386,8 +386,7 @@ def ship_hit(screen_setting, statistics, screen, ship_1, aliens,bullets
         create_fleet(screen_setting,screen,aliens,ship_1)
         ship_1.center_ship()
 
-        #Fourthly, pause the game for 0.5 second
-        sleep(0.5)
+       #sleep removed for web compatibility
 
         ##Please Note that these code above will only ensure the game pauses,
         # it does the other operations but the next codes in the game main 
