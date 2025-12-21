@@ -21,6 +21,10 @@ async def run_game():
 
     #Initialize game and create a screen object.
     pygame.init()
+    
+    #add clock function call
+    clock = pygame.time.Clock()
+
     screen_setting=Settings()
     speed_setting=Settings()
     bullet_setting=Settings() #instance of setting for bullet
@@ -95,6 +99,7 @@ async def run_game():
             screen,ship_1,screen_setting,bullets,aliens,statistics,play_button
             ,score_details
             )
+        clock.tick(60)
         await asyncio.sleep(0) #code thats needed also
 
 
