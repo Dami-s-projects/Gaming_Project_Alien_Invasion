@@ -36,18 +36,18 @@ async def run_game():
     # ##The file path needs to change to include the forward slash for web compatibility
 
     #Instantiance sound class
-    shooting_sound_effect=Sound("./alien_invasion/sounds/bullet_shot.ogg")
+    shooting_sound_effect=Sound("sounds/bullet_shot.ogg")
     background_music=BackgroundMusic(
-        "./alien_invasion/sounds/alien_invasion_background_music.ogg"
+        "sounds/alien_invasion_background_music.ogg"
     )
 
     #make another instance of the background music and pass the other sound
     #as the arguement
     calm_music=BackgroundMusic(
-        "./alien_invasion/sounds/alien_invasion_gameoff_track.ogg"
+        "sounds/alien_invasion_gameoff_track.ogg"
         )
     
-    explosion=Sound("./alien_invasion/sounds/alien_explosion_sound.ogg")
+    explosion=Sound("sounds/alien_explosion_sound.ogg")
 
     #Create an instance to store game statistics and create scoreboard
     statistics = GameStats(screen_setting)

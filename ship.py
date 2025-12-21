@@ -12,7 +12,7 @@ class Ship(Sprite):
 
         #load the ship image and get its rect
         self.image = pygame.image.load(
-            "./alien_invasion/images/ship5.png"
+            "images/ship5.png"
             ).convert_alpha()
         self.rect = self.image.get_rect()
         self.screen_rect=screen.get_rect()
