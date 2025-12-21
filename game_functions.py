@@ -6,6 +6,7 @@ from alien import Alien
 #The sleep line causes error and stops web compatibility
 
 _memory_high_score = 0
+game_running = True
 
 def write_high_score(statistics):
     """Function stores high score in memory"""
@@ -58,7 +59,8 @@ def check_keydown_events(
     elif event.key == pygame.K_SPACE: #when user presses space bar
         fire_bullets(bullet,bullet_setting,screen,ship_1,shooting_sound_effect)
     elif event.key == pygame.K_q:
-        sys.exit()
+        global game_running
+        game_running = False
     elif event.key == pygame.K_p and not statistics.game_active:
         start_game(
             statistics,aliens,bullets,screen_setting,screen,ship_1,
@@ -415,3 +417,8 @@ def check_aliens_bottom(
             ship_hit(screen_setting,statistics,screen,ship_1,aliens,bullets,
                      score_details,background_music,calm_music)
             break
+
+def is_game_running():
+    """Check if game should keep running"""
+    global game_running
+    return game_running

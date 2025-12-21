@@ -70,7 +70,7 @@ async def run_game():
     game_fns.create_fleet(screen_setting,screen,aliens,ship_1)
 
     #Start the main while loop of the game
-    while True:
+    while game_fns.is_game_running():
 
         ###code that watches for Keyboard and mouse events
         game_fns.check_events(
