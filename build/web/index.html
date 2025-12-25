@@ -286,14 +286,15 @@ config = {
         /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
         /* average size of droid screen 470dp x 320dp  */
         canvas.emscripten {
-            border: 0px none;
+            border: 0px none !important;
             background-color: transparent;
-            width: 100%;
-            height: 100%;
+            width: 100vw !important;
+            height: 100vh !important;
+            object-fit: fill !important;
             z-index: 5;
 
-            padding: 0;
-            margin: 0 auto;
+            padding: 0 !important;
+            margin: 0 !important;
 
             position: absolute;
             top: 0;
@@ -301,12 +302,15 @@ config = {
             left: 0;
             right: 0;
         }
-
         body {
             font-family: arial;
             margin: 0;
-            padding: none;
-            background-color:powderblue;
+            padding: 0;
+            background-color: #000;
+            overflow: hidden;
+        }
+        #transfer {
+            display: none !important;
         }
 
         .topright{
@@ -357,8 +361,8 @@ config = {
 
 
     <canvas class="emscripten" id="canvas"
-width="1px"
-height="1px"
+width="1200px"
+height="960px"
     oncontextmenu="event.preventDefault()" tabindex=1>
     </canvas>
 
